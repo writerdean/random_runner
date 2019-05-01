@@ -1,0 +1,84 @@
+a:link {
+  color: blue;
+}
+a:visited {
+  color: black;
+}
+
+.main-wrapper {
+  height: 100vh;
+  overflow: auto;
+}
+.button-wrapper {
+  margin: 5px;
+  padding: 25px;
+}
+
+.home {
+  display: inline;
+  background-color: white;
+  float: right;
+}
+
+.clicked {
+  display: inline;
+  background-color: white;
+  float: left;
+}
+
+.corp-button-wrapper {
+  float: left;
+  width: 50%;
+  height: auto;
+}
+
+.runner-button-wrapper {
+  float: right;
+  width: 50%;
+  height: auto;
+}
+
+#identity-image {
+  /* margin-top: 25px; */
+  clear: both;
+}
+
+#identity-content {
+  margin: auto;
+  text-align: center;
+}
+
+.all-content {
+  width: 90%;
+  max-height: 45vh;
+  margin: auto;
+  background-color: darkgray;
+  margin-top: 15px;
+  border-radius: 15px;
+  overflow: auto;
+}
+
+button {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+ul {
+  list-style: none;
+}
+/* 
+#agenda-content {
+  padding-top: 15px;
+} */
+
+#upgrade-content {
+  padding-bottom: 10px;
+}
+
+.subtext {
+  font-size: .85rem;
+}
+

@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+ol,
+/* ul  */
+{
+  margin: 0;
+  padding: 0;
+}
+
+main,
+li {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit; 
+}
+
+a,
+button {
+  /* color: inherit;
+  transition: .3s; */
+}
+
+img {
+  /* width: 100%; */
+  height: 300px;
+  border: 0;
+  /* change to display: block if you don't want inline-block
+  /* or
+  /* max-width: 100%;*/
+}
+

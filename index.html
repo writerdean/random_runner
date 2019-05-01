@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="cards.js"></script>
+  <script src="filters.js"></script>
+  <script src="createCorp.js"></script>
+  <script src="createRunner.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Netrunner cubed</title>
+</head>
+<body>
+<div class='main-wrapper'>
+<div> <button class="home" onClick="window.location.reload()">Start Over</button></div>
+<div class='button-wrapper'>
+  <div class='right'>
+    <div class='runner-button-wrapper'>
+      <button class='submit' id='runner' onclick='displayDeck(buildRunnerDeck())'>RUNNER</button>
+      <button class='submit' id='anarch' onclick='displayDeck(buildRunnerDeck(anarchPool))'>Anarch</button>
+      <button class='submit' id='criminal' onclick='displayDeck(buildRunnerDeck(criminalPool))'>Criminal</button>
+      <button class='submit' id='shaper' onclick='displayDeck(buildRunnerDeck(shaperPool))'>Shaper</button>
+    </div>
+  </div>
+  <div class='left'>
+    <div class='corp-button-wrapper'>
+      <button class='submit' id='corp' onclick='displayCorpDeck(buildCorpDeck())'>CORP</button>
+      <button class='submit' id='hb' onclick='displayCorpDeck(buildCorpDeck(hbPool))'>Haas-Bioroid</button>
+      <button class='submit' id='jinteki' onclick='displayCorpDeck(buildCorpDeck(jintekiPool))'>Jinteki</button>
+      <button class='submit' id='nbn' onclick='displayCorpDeck(buildCorpDeck(nbnPool))'>NBN</button>
+      <button class='submit' id='weyland' onclick='displayCorpDeck(buildCorpDeck(weylandPool))'>Weyland</button>
+    </div>
+  </div>
+</div>
+
+<div class='content' id='identity-image'></div>
+  <div class='content hide' id='identity-content'></div>
+<div class='all-content'>
+  <ul class='content corp hide' id='agenda-content'><p>Agenda</p></ul>
+  <ul class='content corp hide' id='asset-content'><p>Asset</p></ul>
+  <ul class='content runner hide' id='event-content'><p>Event</p></ul>
+  <ul class='content runner hide' id='hardware-content'><p>Hardware</p></ul>
+  <ul class='content corp hide' id='ice-content'><p>Ice</p></ul>
+  <ul class='content corp hide' id='operation-content'><p>Operation</p></ul>
+  <ul class='content runner hide' id='program-content'><p>Program</p></ul>
+  <ul class='content runner hide' id='resource-content'><p>Resource</p></ul>
+  <ul class='content corp hide' id='upgrade-content'><p>Upgrade</p></ul>
+  <ul class='content runner hide' id='icebreaker-content'><p>Icebreaker</p></ul>
+</div>
+</div>
+
+</body>
+</html>
+
+
+
