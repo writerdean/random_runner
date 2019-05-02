@@ -69,6 +69,7 @@ return playerHandIcebreakers.flat()
 }
 
 function chooseHardware(deck) {
+  console.log(`choose hardware`)
 let playerHandHardware = []
 let hardware = filterByHardware()
 for (let i = 0; i < 6; i++) {
