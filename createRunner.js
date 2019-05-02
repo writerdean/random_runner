@@ -81,7 +81,6 @@ return playerHandHardware.flat()
 }
 
 function chooseEvents(deck, length) {
-// console.log(`chooseEvents function called`)
 let playerHandEvents = []
 let events = filterByEvents()
 while (playerHandEvents.length < 12) {
