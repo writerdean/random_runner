@@ -101,6 +101,7 @@ function chooseAssets(deck) {
 }
 
 function chooseUpgrades(deck) {
+  console.log(`choose upgrades`)
   let playerHandUpgrades = []
   let upgrades = deck.filter(function(el) {
     return el['type_code'] == 'upgrade'
