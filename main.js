@@ -119,7 +119,6 @@ function displayDeck(deck) {
     (titleDeck[item][0]['type_code'] == 'agenda') ? 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]} </a> (${titleDeck[item][0]["advancement_cost"]} / ${titleDeck[item][0]["agenda_points"]})` : 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`
-    // cost/points/strength
     var classes = content.classList;
     classes.remove('hide');
     content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`

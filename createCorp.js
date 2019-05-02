@@ -88,6 +88,7 @@ function chooseIce(deck) {
 }
 
 function chooseAssets(deck) {
+  console.log(`chooseAssets`)
   let playerHandAssets = []
   let assets = deck.filter(function(el) {
     return el['type_code'] == 'asset'
