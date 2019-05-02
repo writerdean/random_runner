@@ -100,6 +100,8 @@ function displayCorpDeck(deck) {
     content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
   })
   let showDeck = groupBy(deck, 'type_code')
+
+  
   return showDeck
 } 
 
