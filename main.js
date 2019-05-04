@@ -99,6 +99,23 @@ function displayCorpDeck(deck) {
     classes.remove('hide');
     content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
   })
+
+  if (document.getElementById('agenda-content').children.length > 1) {
+    document.getElementById('agenda-content').children[0].innerText = 'Agendas'
+  }
+  
+  if (document.getElementById('asset-content').children.length > 1) {
+    document.getElementById('asset-content').children[0].innerText = 'Assets'
+  }
+
+  if (document.getElementById('operation-content').children.length > 1) {
+    document.getElementById('operation-content').children[0].innerText = 'Operations'
+  }
+  
+  if (document.getElementById('upgrade-content').children.length > 1) {
+    document.getElementById('upgrade-content').children[0].innerText = 'Upgrades'
+  }
+
   let showDeck = groupBy(deck, 'type_code')
   return showDeck
 } 
@@ -127,17 +144,17 @@ function displayDeck(deck) {
     content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
   })
 
-if (document.getElementById('event-content').children.length > 1) {
-  document.getElementById('event-content').children[0].innerText = 'Events'
-}
+    if (document.getElementById('event-content').children.length > 1) {
+      document.getElementById('event-content').children[0].innerText = 'Events'
+    }
 
-if (document.getElementById('program-content').children.length > 1) {
-  document.getElementById('program-content').children[0].innerText = 'Programs'
-}
+    if (document.getElementById('program-content').children.length > 1) {
+      document.getElementById('program-content').children[0].innerText = 'Programs'
+    }
 
-if (document.getElementById('resource-content').children.length > 1) {
-  document.getElementById('resource-content').children[0].innerText = 'Resources'
-}
+    if (document.getElementById('resource-content').children.length > 1) {
+      document.getElementById('resource-content').children[0].innerText = 'Resources'
+    }
 
   let showDeck = groupBy(deck, 'type_code')
 
