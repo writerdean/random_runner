@@ -39,16 +39,16 @@
 <div class='content' id='identity-image'></div>
   <div class='content hide' id='identity-content'></div>
 <div class='all-content'>
-  <ul class='content corp hide' id='agenda-content'><p>Agenda</p></ul>
-  <ul class='content corp hide' id='asset-content'><p>Asset</p></ul>
-  <ul class='content runner hide' id='event-content'><p>Event</p></ul>
+  <ul class='content corp hide' id='agenda-content'><p class='heading'>Agenda</p></ul>
+  <ul class='content corp hide' id='asset-content'><p class='heading'>Asset</p></ul>
+  <ul class='content runner hide' id='event-content'><p class='heading'>Event</p></ul>
   <ul class='content runner hide' id='hardware-content'><p>Hardware</p></ul>
   <ul class='content corp hide' id='ice-content'><p>Ice</p></ul>
-  <ul class='content corp hide' id='operation-content'><p>Operation</p></ul>
-  <ul class='content runner hide' id='program-content'><p>Program</p></ul>
-  <ul class='content runner hide' id='resource-content'><p>Resource</p></ul>
-  <ul class='content corp hide' id='upgrade-content'><p>Upgrade</p></ul>
-  <ul class='content runner hide' id='icebreaker-content'><p>Icebreaker</p></ul>
+  <ul class='content runner hide' id='icebreaker-content'><p class='heading'>Icebreaker</p></ul>
+  <ul class='content corp hide' id='operation-content'><p class='heading'>Operation</p></ul>
+  <ul class='content runner hide' id='program-content'><p class='heading'>Program</p></ul>
+  <ul class='content runner hide' id='resource-content'><p class='heading'>Resource</p></ul>
+  <ul class='content corp hide' id='upgrade-content'><p class='heading'>Upgrade</p></ul>
 </div>
 </div>
 
@@ -56,4 +56,7 @@
 </html>
 
 
-
+<!-- let headings = document.querySelectorAll('.heading')
+let content = document.getElementById('event-content')
+let events = headings[2]
+if content.childElementCount > 2, pluralize heading -->

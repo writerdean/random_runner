@@ -111,7 +111,10 @@ function displayDeck(deck) {
   let titles = Object.keys(titleDeck)
   
   titles.forEach(function(item) {
-    var content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
+
+    let content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
+    let contentText = document.getElementById(`${titleDeck[item][0]["type_code"]}`)
+
     var card = (titleDeck[item][0]['type_code'] == 'identity') && (titleDeck[item][0].hasOwnProperty('image_url')) ? 
     `<img src=${titleDeck[item][0]['image_url']} alt="">` : 
     (titleDeck[item][0]['type_code'] == 'identity') ? 
@@ -125,6 +128,19 @@ function displayDeck(deck) {
     classes.remove('hide');
     content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
   })
+
+if (document.getElementById('event-content').children.length > 1) {
+  document.getElementById('event-content').children[0].innerText = 'Events'
+}
+
+if (document.getElementById('program-content').children.length > 1) {
+  document.getElementById('program-content').children[0].innerText = 'Programs'
+}
+
+if (document.getElementById('resource-content').children.length > 1) {
+  document.getElementById('resource-content').children[0].innerText = 'Resources'
+}
+
   let showDeck = groupBy(deck, 'type_code')
   return showDeck
 } 
@@ -138,7 +154,7 @@ window.onload=function(){
     for (let i = 0; i < nodeList.length; i++) {
       if (nodeList[i].classList.contains('clicked')) {
         // console.log('blah')
-        console.log('clicked')
+        // console.log('clicked')
       } else {
         (nodeList[i].classList.add('hide'))
       }
