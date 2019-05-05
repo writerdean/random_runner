@@ -50,12 +50,12 @@ a:visited {
 
 .all-content {
   width: 90%;
-  max-height: 45vh;
+  /* max-height: 45vh; */
   margin: auto;
   background-color: darkgray;
   margin-top: 15px;
   border-radius: 15px;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 button {
