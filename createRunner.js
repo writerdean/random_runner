@@ -34,11 +34,17 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
 }
 
 function chooseIcebreakers(deck) { 
+
 let playerHandIcebreakers = []
 let codeCount = 0
 let sentryCount = 0
 let barrierCount = 0
-let icees = filterByIcebreakers()
+let icees = deck.filter(function(el) {
+    if (el.hasOwnProperty('keywords')) {
+      return (el["type_code"] == "program") 
+    }
+  })
+
   // debugger
 while (playerHandIcebreakers.length < 15) {
   let index = Math.floor(Math.random() * icees.length)
@@ -71,35 +77,45 @@ return playerHandIcebreakers.flat()
 function chooseHardware(deck) {
   console.log(`choose hardware`)
 let playerHandHardware = []
-let hardware = filterByHardware()
-for (let i = 0; i < 6; i++) {
-  var index = [Math.floor(Math.random() * hardware.length)]
-  let thisCard = hardware.splice(index, 1)
-  playerHandHardware.push(thisCard)
-}
+let hardware = deck.filter(function(el) {
+    return (el["type_code"] == "hardware") 
+    }
+  )
+  for (let i = 0; i < 6; i++) {
+    var index = [Math.floor(Math.random() * hardware.length)]
+    let thisCard = hardware.splice(index, 1)
+    playerHandHardware.push(thisCard)
+  }
 return playerHandHardware.flat()
 }
 
 function chooseEvents(deck, length) {
 let playerHandEvents = []
-let events = filterByEvents()
-while (playerHandEvents.length < 12) {
-  var index = [Math.floor(Math.random() * events.length)]
-  let thisCard = events.splice(index, 1)
-  playerHandEvents.push(thisCard)
-}
+let events = deck.filter(function(el) {
+  return (el["type_code"] == "event") 
+  }
+)
+
+  while (playerHandEvents.length < 12) {
+    var index = [Math.floor(Math.random() * events.length)]
+    let thisCard = events.splice(index, 1)
+    playerHandEvents.push(thisCard)
+  }
 return playerHandEvents.flat()
 }
 
 function chooseResources(deck, length) {
-// console.log(`chooseResources function called`)
 
 let playerHandResources = []
-let resources = filterByResources()
-while (playerHandResources.length < 12) {
-  var index = [Math.floor(Math.random() * resources.length)]
-  let thisCard = resources.splice(index, 1)
-  playerHandResources.push(thisCard)
-}
+let resources = deck.filter(function(el) {
+  return (el["type_code"] == "resource") 
+  }
+)
+
+  while (playerHandResources.length < 12) {
+    var index = [Math.floor(Math.random() * resources.length)]
+    let thisCard = resources.splice(index, 1)
+    playerHandResources.push(thisCard)
+  }
 return playerHandResources.flat()
 }
