@@ -141,7 +141,12 @@ function displayDeck(deck) {
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`
     var classes = content.classList;
     classes.remove('hide');
-    content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+      if (titleDeck[item][0]['faction_code'] == 'neutral-runner') {
+        console.log(`neutral`)
+        content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`
+      } else {
+        content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+      }
   })
 
     if (document.getElementById('event-content').children.length > 1) {
