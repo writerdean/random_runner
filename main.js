@@ -144,7 +144,6 @@ function displayDeck(deck) {
     var classes = content.classList;
     classes.remove('hide');
       if (titleDeck[item][0]['faction_code'] == 'neutral-runner') {
-        console.log(`neutral`)
         content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`
       } else {
         content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
