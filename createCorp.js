@@ -136,10 +136,10 @@ function mustHaveCards(deck, card1, card2) {
   let thoseCards = deck.filter(function(el) {
     return el['code'] === card2 
   })
-    for (let i =0; i < theseCards.length; i++) {
+    for (let i =0; i < t3; i++) {
       mustHaveHand.push(theseCards.pop())
     }
-    for (let i =0; i < thoseCards.length; i++) {
+    for (let i =0; i < 3; i++) {
       mustHaveHand.push(thoseCards.pop())
     }
 
