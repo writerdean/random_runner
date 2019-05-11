@@ -16,6 +16,7 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
     currentIdentity = chooseIdentity('runner', currentFaction)
   }
   playerHand.push(currentIdentity)
+  playerHand.push(mustHaveCards(deck, "20059", "04109"))
   playerHand.push(chooseIcebreakers(deck, playerHand.length))
   playerHand.push(chooseHardware(deck))
   playerHand =  playerHand.flat()
@@ -118,3 +119,28 @@ let resources = deck.filter(function(el) {
   }
 return playerHandResources.flat()
 }
+
+function mustHaveCards(deck, card1, card2) {
+  let mustHaveHand = []
+  let theseCards = deck.filter(function(el) {
+    return el['code'] === card1 
+  })
+  let thoseCards = deck.filter(function(el) {
+    return el['code'] === card2 
+  })
+
+    for (let i =0; i < 3; i++) {
+      mustHaveHand.push(theseCards.pop())
+    }
+    for (let i =0; i < 3; i++) {
+      mustHaveHand.push(thoseCards.pop())
+    }
+
+  return mustHaveHand.flat()
+}
+
+
+// Armitage Codebusting "20059"
+// Sure Gamble "01050"
+// Lucky Find "04109"
+// mustHaveCards(anarchPool, "20059", "04109")
