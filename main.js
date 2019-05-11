@@ -2,7 +2,7 @@ let data = eachCard.data
 let currentIdentity
 
 function ownedPacks(item) {
-  if (item["pack_code"] === "rar" || item["pack_code"] === "td" || item["pack_code"] === "tlm" || item["pack_code"] === "cc" || item["pack_code"] === "uw" || item["pack_code"] === "uot" || item["pack_code"] === "oh" || item["pack_code"] === "kg" || item["pack_code"] === "mt" || item["pack_code"] === "up" || item["pack_code"] === "tsb" || item["pack_code"] === "fc" || item["pack_code"] === "uao" || item["pack_code"] === "23s" || item["pack_code"] === "core2" || item["pack_code"] === "core" || item["pack_code"] === "bf" || item["pack_code"] === "baw" || item["pack_code"] === "si") {
+  if (item["pack_code"] === "rar" || item["pack_code"] === "td" || item["pack_code"] === "tlm" || item["pack_code"] === "cc" || item["pack_code"] === "uw" || item["pack_code"] === "uot" || item["pack_code"] === "oh" || item["pack_code"] === "kg" || item["pack_code"] === "mt" || item["pack_code"] === "up" || item["pack_code"] === "tsb" || item["pack_code"] === "fc" || item["pack_code"] === "uao" || item["pack_code"] === "23s" || item["pack_code"] === "core2" || item["pack_code"] === "core" || item["pack_code"] === "bf" || item["pack_code"] === "baw" || item["pack_code"] === "si" || item["pack_code"] === "df") {
     return true
   }
 }

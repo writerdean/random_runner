@@ -75,7 +75,6 @@ return playerHandIcebreakers.flat()
 }
 
 function chooseHardware(deck) {
-  console.log(`choose hardware`)
 let playerHandHardware = []
 let hardware = deck.filter(function(el) {
     return (el["type_code"] == "hardware") 
