@@ -16,6 +16,7 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
     currentIdentity = chooseIdentity('corp', currentFaction)
   }
   playerHand.push(currentIdentity)
+  playerHand.push(mustHaveCards(deck, "01110", "01109"))
   playerHand.push(chooseAgendas(deck).array)
   playerHand.push(chooseIce(deck))
   playerHand.push(chooseAssets(deck))
@@ -57,10 +58,8 @@ function chooseIce(deck) {
   let icees = deck.filter(function(el) {
       return el['type_code'] == 'ice'
     })
-    // debugger
   while (playerHandIce.length < 15) {
     let index = Math.floor(Math.random() * icees.length)
-    // console.log(index)
     let thisCard = icees[index]
     const maxCards = 5
     // debugger
@@ -88,7 +87,6 @@ function chooseIce(deck) {
 }
 
 function chooseAssets(deck) {
-  // console.log(`chooseAssets`)
   let playerHandAssets = []
   let assets = deck.filter(function(el) {
     return el['type_code'] == 'asset'
@@ -102,7 +100,6 @@ function chooseAssets(deck) {
 }
 
 function chooseUpgrades(deck) {
-  // console.log(`choose upgrades`)
   let playerHandUpgrades = []
   let upgrades = deck.filter(function(el) {
     return el['type_code'] == 'upgrade'
@@ -127,3 +124,29 @@ function chooseOperations(deck, length) {
   }
   return playerHandOperations.flat()
 }
+
+
+
+
+function mustHaveCards(deck, card1, card2) {
+  let mustHaveHand = []
+  let theseCards = deck.filter(function(el) {
+    return el['code'] === card1 
+  })
+  let thoseCards = deck.filter(function(el) {
+    return el['code'] === card2 
+  })
+    for (let i =0; i < theseCards.length; i++) {
+      mustHaveHand.push(theseCards.pop())
+    }
+    for (let i =0; i < thoseCards.length; i++) {
+      mustHaveHand.push(thoseCards.pop())
+    }
+
+  return mustHaveHand.flat()
+}
+
+
+// "01110", "01109"
+// mustHaveCards((filterByNeutral('corp'), "01110", "01109"))
+// mustHaveCards(jintekiPool, "01110", "01109")
