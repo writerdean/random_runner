@@ -16,7 +16,6 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
     currentIdentity = chooseIdentity('corp', currentFaction)
   }
   playerHand.push(currentIdentity)
-  playerHand.push(mustHaveCards(deck, "01110", "01109"))
   playerHand.push(chooseAgendas(deck).array)
   playerHand.push(chooseIce(deck))
   playerHand.push(chooseAssets(deck))
@@ -90,8 +89,12 @@ function chooseAssets(deck) {
   let playerHandAssets = []
   let assets = deck.filter(function(el) {
     return el['type_code'] == 'asset'
-  })
-  for (var i = 0; i <= 6; i ++) {
+  }
+)
+  let padIndex = assets.findIndex(x => x.code === "01109");
+  // debugger
+  playerHandAssets.push(assets.splice(padIndex, 3))
+  for (var i = 0; i <= 3; i ++) {
     var index = [Math.floor(Math.random() * assets.length)]
     let thisCard = assets.splice(index, 1)
     playerHandAssets.push(thisCard)
@@ -117,36 +120,28 @@ function chooseOperations(deck, length) {
   let operations = deck.filter(function(el) {
     return el['type_code'] == 'operation'
   })
+  let hedgeIndex = operations.findIndex(x => x.code === "01110");
+  playerHandOperations.push(operations.splice(hedgeIndex, 3))
   while (length+playerHandOperations.length < 45) {
     var index = [Math.floor(Math.random() * operations.length)]
     let thisCard = operations.splice(index, 1)
-    playerHandOperations.push(thisCard)
-  }
+    if (thisCard.title !== "Hedge Fund") 
+      {playerHandOperations.push(thisCard)
+    }
   return playerHandOperations.flat()
+  }
 }
 
 
-
-
-function mustHaveCards(deck, card1, card2) {
-  let mustHaveHand = []
-  let theseCards = deck.filter(function(el) {
-    return el['code'] === card1 
-  })
-  let thoseCards = deck.filter(function(el) {
-    return el['code'] === card2 
-  })
-    for (let i =0; i < t3; i++) {
-      mustHaveHand.push(theseCards.pop())
-    }
-    for (let i =0; i < 3; i++) {
-      mustHaveHand.push(thoseCards.pop())
-    }
-
-  return mustHaveHand.flat()
-}
-
-
-// "01110", "01109"
+// "01110" Hedge Fund, "01109"
 // mustHaveCards((filterByNeutral('corp'), "01110", "01109"))
 // mustHaveCards(jintekiPool, "01110", "01109")
+
+
+
+// check for deck limit on card
+// "deck_limit": 3
+// function checkForDeckLimit(card) {
+//   let limit = card["deck_limit"]
+
+// }

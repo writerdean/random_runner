@@ -1,6 +1,6 @@
 
 function buildRunnerDeck(deck) { // pass in (faction)Pool
-  if (deck == undefined) { 
+  if (deck === undefined) { 
     console.log(`no faction chosen`) 
     let rand = Math.floor(Math.random() * randRunFaction.length)
     deck = randRunFaction[rand]
@@ -16,7 +16,6 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
     currentIdentity = chooseIdentity('runner', currentFaction)
   }
   playerHand.push(currentIdentity)
-  playerHand.push(mustHaveCards(deck, "20059", "04109"))
   playerHand.push(chooseIcebreakers(deck, playerHand.length))
   playerHand.push(chooseHardware(deck))
   playerHand =  playerHand.flat()
@@ -24,8 +23,6 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
   playerHand =  playerHand.flat()
   playerHand.push(chooseResources(deck, playerHand.length))
   playerHand =  playerHand.flat()
-
-  console.log(playerHand)
 
   return playerHand.flat().sort(function(a, b){
           if(a.title < b.title) { return -1; }
@@ -95,7 +92,8 @@ let events = deck.filter(function(el) {
   return (el["type_code"] == "event") 
   }
 )
-
+  let luckyIndex = events.findIndex(x => x.code === "04109");
+  playerHandEvents.push(events.splice(luckyIndex, 3))
   while (playerHandEvents.length < 12) {
     var index = [Math.floor(Math.random() * events.length)]
     let thisCard = events.splice(index, 1)
@@ -111,36 +109,20 @@ let resources = deck.filter(function(el) {
   return (el["type_code"] == "resource") 
   }
 )
-
-  while (playerHandResources.length < 12) {
-    var index = [Math.floor(Math.random() * resources.length)]
-    let thisCard = resources.splice(index, 1)
-    playerHandResources.push(thisCard)
-  }
+let armitageIndex = resources.findIndex(x => x.code === "20059");
+playerHandResources.push(resources.splice(armitageIndex, 3))
+while (playerHandResources.length < 12) {
+  var index = [Math.floor(Math.random() * resources.length)]
+  let thisCard = resources.splice(index, 1)
+  playerHandResources.push(thisCard)
+}
 return playerHandResources.flat()
 }
 
-function mustHaveCards(deck, card1, card2) {
-  let mustHaveHand = []
-  let theseCards = deck.filter(function(el) {
-    return el['code'] === card1 
-  })
-  let thoseCards = deck.filter(function(el) {
-    return el['code'] === card2 
-  })
 
-    for (let i =0; i < 3; i++) {
-      mustHaveHand.push(theseCards.pop())
-    }
-    for (let i =0; i < 3; i++) {
-      mustHaveHand.push(thoseCards.pop())
-    }
-
-  return mustHaveHand.flat()
-}
 
 
 // Armitage Codebusting "20059"
 // Sure Gamble "01050"
 // Lucky Find "04109"
-// mustHaveCards(anarchPool, "20059", "04109")
+// mustHaveCards2(anarchPool, "20059", "04109" "01050")

@@ -126,7 +126,7 @@ function displayCorpDeck(deck) {
 function displayDeck(deck) { 
   let titleDeck = groupBy(deck, 'title')
   let titles = Object.keys(titleDeck)
-  
+  // console.log(titleDeck)
   titles.forEach(function(item) {
 
     let content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
@@ -138,8 +138,6 @@ function displayDeck(deck) {
     `<img src="https://netrunnerdb.com/card_image/${titleDeck[item][0]['code']}.png" alt="">` : 
     (titleDeck[item][0].hasOwnProperty('keywords')) && (titleDeck[item][0]['keywords'].includes('Icebreaker')) ? 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'> (${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
-    (titleDeck[item][0]['type_code'] == 'agenda') ? 
-    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]} </a> <span class='subtext'>(${titleDeck[item][0]["advancement_cost"]} / ${titleDeck[item][0]["agenda_points"]})</span>` : 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`
     var classes = content.classList;
     classes.remove('hide');
