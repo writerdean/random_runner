@@ -15,13 +15,16 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
   if (currentIdentity == null) {
     currentIdentity = chooseIdentity('runner', currentFaction)
   }
+  let min = currentIdentity.minimum_deck_size
+  console.log(min, currentIdentity)
+
   playerHand.push(currentIdentity)
   playerHand.push(chooseIcebreakers(deck, playerHand.length))
   playerHand.push(chooseHardware(deck))
   playerHand =  playerHand.flat()
   playerHand.push(chooseEvents(deck))
   playerHand =  playerHand.flat()
-  playerHand.push(chooseResources(deck, playerHand.length))
+  playerHand.push(chooseResources(deck, playerHand.length, min))
   playerHand =  playerHand.flat()
 
   return playerHand.flat().sort(function(a, b){
@@ -111,16 +114,20 @@ let resources = deck.filter(function(el) {
 )
 let armitageIndex = resources.findIndex(x => x.code === "20059");
 playerHandResources.push(resources.splice(armitageIndex, 3))
+
 while (playerHandResources.length < 12) {
-  var index = [Math.floor(Math.random() * resources.length)]
-  let thisCard = resources.splice(index, 1)
-  playerHandResources.push(thisCard)
+  while(true){
+    var index = [Math.floor(Math.random() * resources.length)]
+    let testCard = resources[index]
+    if(playerHandResources.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+      playerHandResources.push(resources.splice(index, 1))
+      playerHandResources = playerHandResources.flat()
+      break;
+    }
+  }
 }
 return playerHandResources.flat()
 }
-
-
-
 
 // Armitage Codebusting "20059"
 // Sure Gamble "01050"

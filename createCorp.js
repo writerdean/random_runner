@@ -15,13 +15,16 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   if (currentIdentity == null) {
     currentIdentity = chooseIdentity('corp', currentFaction)
   }
+  let min = currentIdentity.minimum_deck_size
+  console.log(min, currentIdentity)
+  // debugger
   playerHand.push(currentIdentity)
   playerHand.push(chooseAgendas(deck).array)
   playerHand.push(chooseIce(deck))
   playerHand.push(chooseAssets(deck))
   playerHand.push(chooseUpgrades(deck))
   playerHand = playerHand.flat()
-  playerHand.push(chooseOperations(deck, playerHand.length))
+  playerHand.push(chooseOperations(deck, playerHand.length, min))
   playerHand =  playerHand.flat()
 
   return playerHand.flat().sort(function(a, b){
@@ -115,14 +118,14 @@ function chooseUpgrades(deck) {
   return playerHandUpgrades.flat()
 }
 
-function chooseOperations(deck, length) {
+function chooseOperations(deck, length, min) {
   let playerHandOperations = []
   let operations = deck.filter(function(el) {
     return el['type_code'] == 'operation'
   })
   let hedgeIndex = operations.findIndex(x => x.code === "01110");
   playerHandOperations.push(operations.splice(hedgeIndex, 3))
-  while (length+playerHandOperations.length < 45) {
+  while (length+playerHandOperations.length < min) {
     var index = [Math.floor(Math.random() * operations.length)]
     let thisCard = operations.splice(index, 1)
     if (thisCard.title !== "Hedge Fund") 
