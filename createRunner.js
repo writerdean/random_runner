@@ -16,7 +16,7 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
     currentIdentity = chooseIdentity('runner', currentFaction)
   }
   let min = currentIdentity.minimum_deck_size
-  console.log(min, currentIdentity)
+  // console.log(min, currentIdentity)
 
   playerHand.push(currentIdentity)
   playerHand.push(chooseIcebreakers(deck, playerHand.length))
@@ -81,10 +81,17 @@ let hardware = deck.filter(function(el) {
     return (el["type_code"] == "hardware") 
     }
   )
-  for (let i = 0; i < 6; i++) {
-    var index = [Math.floor(Math.random() * hardware.length)]
-    let thisCard = hardware.splice(index, 1)
-    playerHandHardware.push(thisCard)
+
+  while (playerHandHardware.length < 6) {
+    while(true){
+      var index = [Math.floor(Math.random() * hardware.length)]
+      let testCard = hardware[index]
+      if(playerHandHardware.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+        playerHandHardware.push(hardware.splice(index, 1))
+        playerHandHardware = playerHandHardware.flat()
+        break;
+      }
+    }
   }
 return playerHandHardware.flat()
 }
@@ -97,10 +104,17 @@ let events = deck.filter(function(el) {
 )
   let luckyIndex = events.findIndex(x => x.code === "04109");
   playerHandEvents.push(events.splice(luckyIndex, 3))
+
   while (playerHandEvents.length < 12) {
-    var index = [Math.floor(Math.random() * events.length)]
-    let thisCard = events.splice(index, 1)
-    playerHandEvents.push(thisCard)
+    while(true){
+      var index = [Math.floor(Math.random() * events.length)]
+      let testCard = events[index]
+      if(playerHandEvents.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+        playerHandEvents.push(events.splice(index, 1))
+        playerHandEvents = playerHandEvents.flat()
+        break;
+      }
+    }
   }
 return playerHandEvents.flat()
 }
