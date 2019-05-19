@@ -52,6 +52,18 @@ while (playerHandIcebreakers.length < 15) {
   let thisCard = icees[index]
   const maxCards = 5
   // debugger
+
+  // while(true){
+  //   var index = [Math.floor(Math.random() * hardware.length)]
+  //   let testCard = hardware[index]
+  //   if(playerHandHardware.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+  //     playerHandHardware.push(hardware.splice(index, 1))
+  //     playerHandHardware = playerHandHardware.flat()
+  //     break;
+  //   }
+  // }
+
+
   if (thisCard["text"].includes("code gate")) {
     if (codeCount < maxCards) {
       playerHandIcebreakers.push(icees.splice(index, 1))
