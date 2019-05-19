@@ -36,55 +36,47 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
 
 function chooseIcebreakers(deck) { 
 
-let playerHandIcebreakers = []
-let codeCount = 0
-let sentryCount = 0
-let barrierCount = 0
-let icees = deck.filter(function(el) {
-    if (el.hasOwnProperty('keywords')) {
-      return (el["type_code"] == "program") 
+  let playerHandIcebreakers = []
+  let codeCount = 0
+  let sentryCount = 0
+  let barrierCount = 0
+  let icees = deck.filter(function(el) {
+      if (el.hasOwnProperty('keywords')) {
+        return (el["type_code"] == "program") 
+      }
+    })
+    // debugger
+  while (playerHandIcebreakers.length < 15) {
+    while(true){
+      var index = Math.floor(Math.random() * icees.length)
+      let testCard = icees[index]
+      const maxCards = 5
+      if(playerHandIcebreakers.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
+        // playerHandIcebreakers.push(icees.splice(index, 1))
+        if (testCard["text"].includes("code gate")) {
+          if (codeCount < maxCards) {
+            playerHandIcebreakers.push(icees.splice(index, 1))
+            codeCount++
+          }
+        } else if (testCard["text"].includes("sentry")) {
+          if (sentryCount < maxCards) {
+            playerHandIcebreakers.push(icees.splice(index, 1))
+            sentryCount++
+          }
+        } else if (testCard["text"].includes("barrier")) {
+          if (barrierCount < maxCards) {
+            playerHandIcebreakers.push(icees.splice(index, 1))
+            barrierCount++
+          }
+        } else {
+          playerHandIcebreakers.push(icees.splice(index, 1))
+        }
+        playerHandIcebreakers = playerHandIcebreakers.flat()
+        break;
+      }
     }
-  })
-
-  // debugger
-while (playerHandIcebreakers.length < 15) {
-  let index = Math.floor(Math.random() * icees.length)
-  let thisCard = icees[index]
-  const maxCards = 5
-  // debugger
-
-  // while(true){
-  //   var index = [Math.floor(Math.random() * hardware.length)]
-  //   let testCard = hardware[index]
-  //   if(playerHandHardware.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
-  //     playerHandHardware.push(hardware.splice(index, 1))
-  //     playerHandHardware = playerHandHardware.flat()
-  //     break;
-  //   }
-  // }
-
-
-  if (thisCard["text"].includes("code gate")) {
-    if (codeCount < maxCards) {
-      playerHandIcebreakers.push(icees.splice(index, 1))
-      codeCount++
-    }
-  } else if (thisCard["text"].includes("sentry")) {
-    if (sentryCount < maxCards) {
-      playerHandIcebreakers.push(icees.splice(index, 1))
-      sentryCount++
-    }
-  } else if (thisCard["text"].includes("barrier")) {
-    if (barrierCount < maxCards) {
-      playerHandIcebreakers.push(icees.splice(index, 1))
-      barrierCount++
-    }
-  } else {
-    playerHandIcebreakers.push(icees.splice(index, 1))
   }
-
-}
-return playerHandIcebreakers.flat()
+  return playerHandIcebreakers.flat()
 }
 
 function chooseHardware(deck) {
@@ -98,7 +90,7 @@ let hardware = deck.filter(function(el) {
     while(true){
       var index = [Math.floor(Math.random() * hardware.length)]
       let testCard = hardware[index]
-      if(playerHandHardware.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+      if(playerHandHardware.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
         playerHandHardware.push(hardware.splice(index, 1))
         playerHandHardware = playerHandHardware.flat()
         break;
@@ -121,7 +113,7 @@ let events = deck.filter(function(el) {
     while(true){
       var index = [Math.floor(Math.random() * events.length)]
       let testCard = events[index]
-      if(playerHandEvents.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+      if(playerHandEvents.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
         playerHandEvents.push(events.splice(index, 1))
         playerHandEvents = playerHandEvents.flat()
         break;
@@ -145,7 +137,7 @@ while (playerHandResources.length < 12) {
   while(true){
     var index = [Math.floor(Math.random() * resources.length)]
     let testCard = resources[index]
-    if(playerHandResources.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+    if(playerHandResources.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
       playerHandResources.push(resources.splice(index, 1))
       playerHandResources = playerHandResources.flat()
       break;
