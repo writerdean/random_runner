@@ -16,8 +16,7 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
     currentIdentity = chooseIdentity('corp', currentFaction)
   }
   let min = currentIdentity.minimum_deck_size
-  console.log(min, currentIdentity)
-  // debugger
+  // console.log(min, currentIdentity)
   playerHand.push(currentIdentity)
   playerHand.push(chooseAgendas(deck).array)
   playerHand.push(chooseIce(deck))
@@ -41,13 +40,10 @@ function chooseAgendas(deck) {
       return el['type_code'] == 'agenda'
     })
   while (agendaPoints < 20) {
-    // let index = Math.floor(Math.random() * agendas.length)
-    // let thisCard = agendas[index]
-    // playerHandAgendas.push(agendas.splice(index, 1))
     while(true){
       let index = Math.floor(Math.random() * agendas.length)
       let testCard = agendas[index]
-      if (playerHandAgendas.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+      if (playerHandAgendas.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
         playerHandAgendas.push(agendas.splice(index, 1))
         agendaPoints = agendaPoints + testCard["agenda_points"] 
         playerHandAgendas = playerHandAgendas.flat()
@@ -70,29 +66,33 @@ function chooseIce(deck) {
       return el['type_code'] == 'ice'
     })
   while (playerHandIce.length < 15) {
-    let index = Math.floor(Math.random() * icees.length)
-    let thisCard = icees[index]
-    const maxCards = 5
-    // debugger
-    if (thisCard['keywords'].includes('Code')) {
-      if (codeCount < maxCards) {
-        playerHandIce.push(icees.splice(index, 1))
-        codeCount++
+    while(true){
+      let index = Math.floor(Math.random() * icees.length)
+      let testCard = icees[index]
+      const maxCards = 5
+      if (playerHandIce.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
+        if (testCard['keywords'].includes('Code')) {
+          if (codeCount < maxCards) {
+            playerHandIce.push(icees.splice(index, 1))
+            codeCount++
+          }
+        } else if (testCard['keywords'].includes('Sentry')) {
+          if (sentryCount < maxCards) {
+            playerHandIce.push(icees.splice(index, 1))
+            sentryCount++
+          }
+        } else if (testCard['keywords'].includes('Barrier')) {
+          if (barrierCount < maxCards) {
+            playerHandIce.push(icees.splice(index, 1))
+            barrierCount++
+          }
+        } else {
+          playerHandIce.push(icees.splice(index, 1))
+        }
+        playerHandIce = playerHandIce.flat()
+        break;
       }
-    } else if (thisCard['keywords'].includes('Sentry')) {
-      if (sentryCount < maxCards) {
-        playerHandIce.push(icees.splice(index, 1))
-        sentryCount++
-      }
-    } else if (thisCard['keywords'].includes('Barrier')) {
-      if (barrierCount < maxCards) {
-        playerHandIce.push(icees.splice(index, 1))
-        barrierCount++
-      }
-    } else {
-      playerHandIce.push(icees.splice(index, 1))
     }
-
   }
   return playerHandIce.flat()
 }
@@ -110,7 +110,7 @@ function chooseAssets(deck) {
     while(true){
       var index = [Math.floor(Math.random() * assets.length)]
       let testCard = assets[index]
-      if(playerHandAssets.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+      if(playerHandAssets.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
         playerHandAssets.push(assets.splice(index, 1))
         playerHandAssets = playerHandAssets.flat()
         break;
@@ -130,7 +130,7 @@ function chooseUpgrades(deck) {
     while(true){
       var index = [Math.floor(Math.random() * upgrades.length)]
       let testCard = upgrades[index]
-      if(playerHandUpgrades.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+      if(playerHandUpgrades.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
         playerHandUpgrades.push(upgrades.splice(index, 1))
         playerHandUpgrades = playerHandUpgrades.flat()
         break;
@@ -152,7 +152,7 @@ function chooseOperations(deck, length, min) {
     while(true){
       var index = [Math.floor(Math.random() * operations.length)]
       let testCard = operations[index]
-      if(playerHandOperations.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+      if(playerHandOperations.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
         playerHandOperations.push(operations.splice(index, 1))
         playerHandOperations = playerHandOperations.flat()
         break;
@@ -166,12 +166,3 @@ function chooseOperations(deck, length, min) {
 // "01110" Hedge Fund, "01109"
 // mustHaveCards((filterByNeutral('corp'), "01110", "01109"))
 // mustHaveCards(jintekiPool, "01110", "01109")
-
-
-
-// check for deck limit on card
-// "deck_limit": 3
-// function checkForDeckLimit(card) {
-//   let limit = card["deck_limit"]
-
-// }
