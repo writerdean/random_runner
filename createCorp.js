@@ -41,12 +41,21 @@ function chooseAgendas(deck) {
       return el['type_code'] == 'agenda'
     })
   while (agendaPoints < 20) {
-    let index = Math.floor(Math.random() * agendas.length)
-    let thisCard = agendas[index]
-    playerHandAgendas.push(agendas.splice(index, 1))
-    agendaPoints = agendaPoints + thisCard["agenda_points"] 
+    // let index = Math.floor(Math.random() * agendas.length)
+    // let thisCard = agendas[index]
+    // playerHandAgendas.push(agendas.splice(index, 1))
+    while(true){
+      let index = Math.floor(Math.random() * agendas.length)
+      let testCard = agendas[index]
+      if (playerHandAgendas.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+        playerHandAgendas.push(agendas.splice(index, 1))
+        agendaPoints = agendaPoints + testCard["agenda_points"] 
+        playerHandAgendas = playerHandAgendas.flat()
+        break;
+      }
+    }
   }    
-  // console.log(agendaPoints) 
+  console.log(agendaPoints) 
   playerHandAgendas = playerHandAgendas.flat()  
   let agendasPlus = {points: agendaPoints, array: [playerHandAgendas]} 
   return agendasPlus
@@ -98,9 +107,16 @@ function chooseAssets(deck) {
   // debugger
   playerHandAssets.push(assets.splice(padIndex, 3))
   for (var i = 0; i <= 3; i ++) {
-    var index = [Math.floor(Math.random() * assets.length)]
-    let thisCard = assets.splice(index, 1)
-    playerHandAssets.push(thisCard)
+    while(true){
+      var index = [Math.floor(Math.random() * assets.length)]
+      let testCard = assets[index]
+      if(playerHandAssets.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+        playerHandAssets.push(assets.splice(index, 1))
+        playerHandAssets = playerHandAssets.flat()
+        break;
+      }
+    }
+
   }
   return playerHandAssets.flat()
 }
@@ -111,9 +127,15 @@ function chooseUpgrades(deck) {
     return el['type_code'] == 'upgrade'
   })
   for (var i = 0; i <= 6; i ++) {
-    var index = [Math.floor(Math.random() * upgrades.length)]
-    let thisCard = upgrades.splice(index, 1)
-    playerHandUpgrades.push(thisCard)
+    while(true){
+      var index = [Math.floor(Math.random() * upgrades.length)]
+      let testCard = upgrades[index]
+      if(playerHandUpgrades.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+        playerHandUpgrades.push(upgrades.splice(index, 1))
+        playerHandUpgrades = playerHandUpgrades.flat()
+        break;
+      }
+    }
   }
   return playerHandUpgrades.flat()
 }
@@ -126,13 +148,18 @@ function chooseOperations(deck, length, min) {
   let hedgeIndex = operations.findIndex(x => x.code === "01110");
   playerHandOperations.push(operations.splice(hedgeIndex, 3))
   while (length+playerHandOperations.length < min) {
-    var index = [Math.floor(Math.random() * operations.length)]
-    let thisCard = operations.splice(index, 1)
-    if (thisCard.title !== "Hedge Fund") 
-      {playerHandOperations.push(thisCard)
+
+    while(true){
+      var index = [Math.floor(Math.random() * operations.length)]
+      let testCard = operations[index]
+      if(playerHandOperations.filter(x => x.code == testCard.code).length < testCard.deck_limit) {
+        playerHandOperations.push(operations.splice(index, 1))
+        playerHandOperations = playerHandOperations.flat()
+        break;
+      }
     }
-  return playerHandOperations.flat()
   }
+  return playerHandOperations.flat()
 }
 
 
