@@ -144,10 +144,11 @@ function displayCorpDeck(deck) {
   if (document.getElementById('upgrade-content').children.length > 1) {
     document.getElementById('upgrade-content').children[0].innerText = 'Upgrades'
   }
+  document.querySelector('#corp-identity-chooser').classList.add('hide')
+  document.querySelector('#runner-identity-chooser').classList.add('hide')
+  document.querySelector('#choose-identity-container').classList.add('hide')
 
   let showDeck = groupBy(deck, 'type_code')
-
-  
   return showDeck
 } 
 
@@ -155,7 +156,6 @@ function displayCorpDeck(deck) {
 function displayDeck(deck) { 
   let titleDeck = groupBy(deck, 'title')
   let titles = Object.keys(titleDeck)
-  console.log('displayDeck called')
   titles.forEach(function(item) {
 
     let content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
