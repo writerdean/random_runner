@@ -188,7 +188,12 @@ function displayDeck(deck) {
     if (document.getElementById('resource-content').children.length > 1) {
       document.getElementById('resource-content').children[0].innerText = 'Resources'
     }
-
+// hide with class contains identity-chooser adn choose-identity-container
+  // let identityContent = document.querySelector('#corp-identity-chooser') && document.querySelector('#runner-identity-chooser')  && document.querySelector('#choose-identity-container') 
+  // console.log(identityContent)
+  document.querySelector('#corp-identity-chooser').classList.add('hide')
+  document.querySelector('#runner-identity-chooser').classList.add('hide')
+  document.querySelector('#choose-identity-container').classList.add('hide')
   let showDeck = groupBy(deck, 'type_code')
   return showDeck
 } 

@@ -16,10 +16,10 @@
 </head>
 <body>
     <div> <button class="home" onClick="window.location.reload()">Start Over</button></div>
-    <button class='corp identity-chooser' onclick='chooseFromCorpIdentityList()'>CORP</button>
-    <button class='runner identity-chooser' onClick='chooseFromRunnerIdentityList()'>RUNNER</button>
+    <button id='corp-identity-chooser' onclick='chooseFromCorpIdentityList()'>CORP</button>
+    <button id='runner-identity-chooser' onClick='chooseFromRunnerIdentityList()'>RUNNER</button>
 
-  <div class='choose-identity'>
+  <div id='choose-identity'>
       <div id="choose-identity-container">
           <h1>Choose Your Identity</h1>
           <form>
@@ -27,12 +27,13 @@
               <option>Identity</option>
             </select>
           </form>
+          <h2>Choose Random Identity</h2>
         </div>
   </div>
 
 
 <div class='main-wrapper'>
-    <h2>Choose Random Identity</h2>
+
   <div class='button-wrapper'>
     <div class='right'>
       <div class='runner-button-wrapper'>
