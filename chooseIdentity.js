@@ -1,6 +1,4 @@
-// let currentIdentity;
 
-// let cards = eachCard["data"]
 let runnersIdentities = cards.filter(function(el) {
   if (el["type_code"] == "identity" && el["side_code"] == "runner") {
     return true
@@ -14,10 +12,7 @@ let corpIdentities = cards.filter(function(el) {
 let allIdentities = [...runnersIdentities, ...corpIdentities]
 
 function chooseFromRunnerIdentityList() {
-// console.log('run Joe run run run')
   for (let i = 0; i < runnersIdentities.length; i++) {
-    // console.log(runnersIdentities[i])
-    // debugger
     let option = document.createElement('option');
     let node = document.createTextNode(runnersIdentities[i]['title']);
     option.appendChild(node);
@@ -28,7 +23,6 @@ function chooseFromRunnerIdentityList() {
 }
 
 function chooseFromCorpIdentityList() {
-  console.log('run Jen run')
   for (let i = 0; i < runnersIdentities.length; i++) {
     let option = document.createElement('option');
     let node = document.createTextNode(corpIdentities[i]['title']);
@@ -48,12 +42,3 @@ function changePerson(event) {
   document.getElementById('identities').selectedIndex = null;
     return currentIdentity
   }
-
-
-
-
-
-
-
-  // console.log(`currentIdentity = ${currentIdentity}`)
-  // document.getElementById('identities').selectedIndex = null;

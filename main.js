@@ -55,7 +55,6 @@ function createFactionDeck(side, faction) {
 
 function chooseIdentity(side, faction) {
     let identities = filterByIdentity()
-
     let chooseSide = side
     let chooseFaction = faction
     const index = Math.floor(Math.random() * identities.length);
@@ -78,7 +77,6 @@ function groupBy(objectArray, property) {
     if (!acc[key]) {
       acc[key] = [];
     }
-
     acc[key].push(obj);
     return acc;
   }, {});
@@ -105,9 +103,7 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
   return factionPool
 }
 
-
 function displayCorpDeck(deck) { 
-  console.log('displayCorpDeck called')
   let titleDeck = groupBy(deck, 'title')
   let titles = Object.keys(titleDeck)
   
@@ -188,9 +184,6 @@ function displayDeck(deck) {
     if (document.getElementById('resource-content').children.length > 1) {
       document.getElementById('resource-content').children[0].innerText = 'Resources'
     }
-// hide with class contains identity-chooser adn choose-identity-container
-  // let identityContent = document.querySelector('#corp-identity-chooser') && document.querySelector('#runner-identity-chooser')  && document.querySelector('#choose-identity-container') 
-  // console.log(identityContent)
   document.querySelector('#corp-identity-chooser').classList.add('hide')
   document.querySelector('#runner-identity-chooser').classList.add('hide')
   document.querySelector('#choose-identity-container').classList.add('hide')
@@ -199,7 +192,6 @@ function displayDeck(deck) {
 } 
 
 window.onload=function(){
-    
   document.querySelector(".button-wrapper").addEventListener("click", function(event){
     event.target.classList.add('clicked')
     const runner = document.querySelector('.runner-button-wrapper')
