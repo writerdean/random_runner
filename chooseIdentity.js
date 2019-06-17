@@ -1,14 +1,27 @@
 
-let runnersIdentities = cards.filter(function(el) {
-  if (el["type_code"] == "identity" && el["side_code"] == "runner") {
-    return true
-  }
+let runnersIdentities = cards
+  .filter(function(el) {
+  return (el["type_code"] == "identity" && el["side_code"] == "runner") 
 })
-let corpIdentities = cards.filter(function(el) {
-  if (el["type_code"] == "identity" && el["side_code"] == "corp") {
-    return true
-  }
+.sort(function(a, b) {
+  return a.title < b.title ? -1 : 1;
 })
+.sort(function(a, b) {
+  return a.faction_code < b.faction_code ? -1 : 1;
+});
+
+
+let corpIdentities = cards
+  .filter(function(el) {
+  return (el["type_code"] == "identity" && el["side_code"] == "corp") 
+})
+.sort(function(a, b) {
+  return a.title < b.title ? -1 : 1;
+})
+.sort(function(a, b) {
+  return a.faction_code < b.faction_code ? -1 : 1;
+});
+
 let allIdentities = [...runnersIdentities, ...corpIdentities]
 
 function chooseFromRunnerIdentityList() {

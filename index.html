@@ -19,12 +19,29 @@
     <button id='corp-identity-chooser' onclick='chooseFromCorpIdentityList()'>CORP</button>
     <button id='runner-identity-chooser' onClick='chooseFromRunnerIdentityList()'>RUNNER</button>
 
+  <!-- We will put our React component inside this div. -->
+    <div id='like_button_container'></div>
+
   <div id='choose-identity'>
       <div id="choose-identity-container">
           <h1>Choose Your Identity</h1>
           <form>
             <select id="identities">
               <option>Identity</option>
+            <optgroup label="Corp" id="corp-identity-dropdown">
+                <option label="HB" id="hb-identity-dropdown">First</option>
+                <option label="Jinteki" id="jinteki-identity-dropdown">Second</option>
+                <option label="NBN" id="nbn-identity-dropdown">Third</option>
+                <option label="Weyland" id="weyland-identity-dropdown">Fourth</option>
+            </optgroup>
+            <optgroup>
+              <option>&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472</option>
+          </optgroup>
+            <optgroup label="Runner" id="runner-identity-dropdown">
+              <option label="Anarch" id="anarch-identity-dropdown">First</option>
+              <option label="Criminal" id="criminal-identity-dropdown">Second</option>
+              <option label="Shaper" id="shaper-identity-dropdown">Third</option>
+          </optgroup>
             </select>
           </form>
           <h2>Choose Random Identity</h2>
@@ -78,6 +95,13 @@
 
 
 </div>
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
+  <!-- Load our React component. -->
+  <script src="likeButton.js"></script>
+  
 </body>
 </html>
