@@ -16,7 +16,6 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
     currentIdentity = chooseIdentity('runner', currentFaction)
   }
   let min = currentIdentity.minimum_deck_size
-  // console.log(min, currentIdentity)
 
   playerHand.push(currentIdentity)
   playerHand.push(chooseIcebreakers(deck, playerHand.length))
@@ -46,7 +45,9 @@ function chooseIcebreakers(deck) {
       }
     })
     // debugger
-  while (playerHandIcebreakers.length < 15) {
+    min = Math.round(currentIdentity.minimum_deck_size*.333)
+
+  while (playerHandIcebreakers.length < min) {
     while(true){
       var index = Math.floor(Math.random() * icees.length)
       let testCard = icees[index]
@@ -85,8 +86,9 @@ let hardware = deck.filter(function(el) {
     return (el["type_code"] == "hardware") 
     }
   )
+min = Math.round(currentIdentity.minimum_deck_size*.133)
 
-  while (playerHandHardware.length < 6) {
+  while (playerHandHardware.length < min) {
     while(true){
       var index = [Math.floor(Math.random() * hardware.length)]
       let testCard = hardware[index]
@@ -108,8 +110,9 @@ let events = deck.filter(function(el) {
 )
   let luckyIndex = events.findIndex(x => x.code === "04109");
   playerHandEvents.push(events.splice(luckyIndex, 3))
+  min = Math.round(currentIdentity.minimum_deck_size*.266)
 
-  while (playerHandEvents.length < 12) {
+  while (playerHandEvents.length < min) {
     while(true){
       var index = [Math.floor(Math.random() * events.length)]
       let testCard = events[index]
@@ -132,8 +135,8 @@ let resources = deck.filter(function(el) {
 )
 let armitageIndex = resources.findIndex(x => x.code === "20059");
 playerHandResources.push(resources.splice(armitageIndex, 3))
-
-while (playerHandResources.length < 12) {
+min = Math.round(currentIdentity.minimum_deck_size*.266)
+while (playerHandResources.length < min) {
   while(true){
     var index = [Math.floor(Math.random() * resources.length)]
     let testCard = resources[index]
