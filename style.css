@@ -1,6 +1,9 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 @media only screen and (min-width: 600px) {
   body {
-    background-color: lightblue;
     max-width: 600px;
   }
 }
@@ -8,9 +11,9 @@
 a:link {
   color: blue;
 }
-a:visited {
+/* a:visited {
   color: black;
-}
+} */
 
 .main-wrapper {
   height: 100vh;
@@ -66,7 +69,12 @@ a:visited {
 }
 
 button {
+  background-color: white;
+  margin: 2px;
   display: block;
+  /* color: green; */
+  border: solid black 1px;
+  border-radius: 5%;
 }
 
 .hide {
@@ -91,4 +99,5 @@ ul {
 
 .neutral {
   font-variant: small-caps;
+  font-style: italic;
 }

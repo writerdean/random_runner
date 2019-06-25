@@ -18,19 +18,20 @@ function ownedPacks(item) {
   item["pack_code"] === "uot" ||
   item["pack_code"] === "kg" ||
   item["pack_code"] === "bf" ||
-  item["pack_code"] === "dag" ||
+  // item["pack_code"] === "dag" ||
   item["pack_code"] === "si" ||
   item["pack_code"] === "tlm" ||
-  item["pack_code"] === "ftm" ||
+  // item["pack_code"] === "ftm" ||
   item["pack_code"] === "23s" ||
-  item["pack_code"] === "ml" ||
-  item["pack_code"] === "qu" ||
+  // item["pack_code"] === "ml" ||
+  // item["pack_code"] === "qu" ||
   item["pack_code"] === "baw" ||
-  item["pack_code"] === "fm" ||
+  // item["pack_code"] === "fm" ||
   item["pack_code"] === "td" ||
   item["pack_code"] === "core2" ||
   item["pack_code"] === "rar" ||
-  item["pack_code"] === "df" ) {
+  item["pack_code"] === "df" ||
+  item["pack_code"] === "val" ) {
     return true
   }
 }
@@ -104,6 +105,7 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
 }
 
 function displayCorpDeck(deck) { 
+  console.log('display Corp Deck')
   let titleDeck = groupBy(deck, 'title')
   let titles = Object.keys(titleDeck)
   
@@ -122,7 +124,11 @@ function displayCorpDeck(deck) {
     // cost/points/strength
     var classes = content.classList;
     classes.remove('hide');
-    content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+    if(titleDeck[item][0]['faction_code'] == 'neutral-corp') {
+      content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`
+    } else {
+      content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+    }
   })
 
   if (document.getElementById('agenda-content').children.length > 1) {

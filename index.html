@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="google-signin-client_id" content="243909071235-g94ojcot14hfk9d3g4cnuk18jij0pij0.apps.googleusercontent.com">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <!-- <meta name="google-signin-client_id" content="243909071235-g94ojcot14hfk9d3g4cnuk18jij0pij0.apps.googleusercontent.com"> -->
   <script src="cards.js"></script>
   <script src="filters.js"></script>
-  <script src="login.js"></script>
   <script src="createCorp.js"></script>
   <script src="createRunner.js"></script>
   <script src="main.js"></script>
@@ -15,13 +15,13 @@
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
   <title>Random Runner</title>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
     <div> <button class="g-signin2" id="my-signin2" onclick="onSignIn()">Sign In</button></div>
     <div> <button class="home" onClick="window.location.reload()">Start Over</button></div>
 
     <!-- <a href="#" onclick="signOut();">Sign out</a> -->
+    <button>Random</button>
 
     <button id='corp-identity-chooser' onclick='chooseFromCorpIdentityList()'>CORP</button>
     <button id='runner-identity-chooser' onClick='chooseFromRunnerIdentityList()'>RUNNER</button>
