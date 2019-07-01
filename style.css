@@ -1,5 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
+  /* use work-sans (as opposed to San Francisco), don't go below 14px, use semi-bold instead of italics for neutral cards */
 }
 
 @media only screen and (min-width: 600px) {

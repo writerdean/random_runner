@@ -40,10 +40,10 @@ function chooseFromCorpIdentityList() {
     let option = document.createElement('option');
     let node = document.createTextNode(corpIdentities[i]['title']);
     option.appendChild(node);
-    let element = document.getElementById('identities');
+    let element = document.getElementById('corp-identity-dropdown');
     element.appendChild(option);
   }
-  document.getElementById('identities').addEventListener('change', changePerson);
+  document.getElementById('corp-identity-dropdown').addEventListener('change', changePerson);
   }
 function changePerson(event) {
   let currentChoice = document.getElementById('identities').value;

@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <!-- <meta name="google-signin-client_id" content="243909071235-g94ojcot14hfk9d3g4cnuk18jij0pij0.apps.googleusercontent.com"> -->
   <script src="cards.js"></script>
+  <script src="cardsService.js"></script>
   <script src="filters.js"></script>
   <script src="createCorp.js"></script>
   <script src="createRunner.js"></script>
@@ -17,11 +18,11 @@
   <title>Random Runner</title>
 </head>
 <body>
-    <div> <button class="g-signin2" id="my-signin2" onclick="onSignIn()">Sign In</button></div>
+    <!-- <div> <button class="g-signin2" id="my-signin2" onclick="onSignIn()">Sign In</button></div> -->
     <div> <button class="home" onClick="window.location.reload()">Start Over</button></div>
 
     <!-- <a href="#" onclick="signOut();">Sign out</a> -->
-    <button>Random</button>
+    <!-- <button>Random</button> -->
 
     <button id='corp-identity-chooser' onclick='chooseFromCorpIdentityList()'>CORP</button>
     <button id='runner-identity-chooser' onClick='chooseFromRunnerIdentityList()'>RUNNER</button>
@@ -35,20 +36,11 @@
           <form>
             <select id="identities">
               <option>Identity</option>
-            <optgroup label="Corp" id="corp-identity-dropdown">
-                <option label="HB" id="hb-identity-dropdown">First</option>
-                <option label="Jinteki" id="jinteki-identity-dropdown">Second</option>
-                <option label="NBN" id="nbn-identity-dropdown">Third</option>
-                <option label="Weyland" id="weyland-identity-dropdown">Fourth</option>
-            </optgroup>
-            <optgroup>
-              <option>&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472</option>
-          </optgroup>
-            <optgroup label="Runner" id="runner-identity-dropdown">
-              <option label="Anarch" id="anarch-identity-dropdown">First</option>
-              <option label="Criminal" id="criminal-identity-dropdown">Second</option>
-              <option label="Shaper" id="shaper-identity-dropdown">Third</option>
-          </optgroup>
+                <optgroup label="Corp" id="corp-identity-dropdown"></optgroup>
+                <optgroup>
+                  <option>&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472&#9472</option>
+                </optgroup>
+                <optgroup label="Runner" id="runner-identity-dropdown"></optgroup>
             </select>
           </form>
           <h2>Choose Random Identity</h2>
@@ -87,6 +79,7 @@
 
   <div class='content' id='identity-image'></div>
     <div class='content hide' id='identity-content'></div>
+    <div id="random-card"></div>
   <div class='all-content'>
     <ul class='content corp hide' id='agenda-content'><p class='heading'>Agenda</p></ul>
     <ul class='content corp hide' id='asset-content'><p class='heading'>Asset</p></ul>

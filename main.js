@@ -1,4 +1,5 @@
 let data = eachCard.data
+// let data = cardsService.getAll();
 let currentIdentity
 let currentFaction
 
@@ -34,6 +35,7 @@ function ownedPacks(item) {
   item["pack_code"] === "val" ) {
     return true
   }
+  // just opened democracy and dogma
 }
 
 const cards = data.filter(ownedPacks)

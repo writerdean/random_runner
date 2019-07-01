@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>IIFE practice</title>
+</head>
+<body>
+    <form action="">
+        <input type="text">
+        <button>Get All Cards</button>
+        </form>
+        <div></div>
+  <script>
+  // const singleCard = (function() {
+  //   let card = 'https://netrunnerdb.com/api/2.0/public/card/06021';
+  //   return card["image_url"];
+  // }
+  // )();
+  // console.log(singleCard);
+
+//   const allCards = (function() {
+//     var getAllCards = function(resp) {
+//       var data = resp.data
+//       cards.forEach(function(card) {
+//         console.log('each card')
+//       })
+//     }
+//     var url = `https://netrunnerdb.com/api/2.0/public/cards`
+//     $.ajax({ url: url}).done(displayAllCards)
+//   }
+//   )();
+// allCards;
+
+
+// var form = document.querySelector('form')
+// var input = document.querySelector('input')
+// var div = document.querySelector('div')
+form.addEventListener('submit', function(event) {
+  let allCardsDeck = []
+  event.preventDefault()
+  var displayAllCards = function(resp) {
+      var cards = resp.data
+      cards.forEach(function(card) {
+        // var newPara = document.createElement('p')
+        // newPara.textContent = card.title
+        // div.appendChild(newPara)
+        allCardsDeck.push(card)
+      })
+      return allCardsDeck;
+  }
+  // use js to make an asynch request
+  var card = input.value
+  var url = `https://netrunnerdb.com/api/2.0/public/cards`
+  $.ajax({ url: url}).done(displayAllCards)
+})
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+</body>
+</html>
