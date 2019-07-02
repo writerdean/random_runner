@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>IIFE practice</title>
+</head>
+<body>
+    <form action="">
+        <input type="text">
+        <button>Get All Cards</button>
+        </form>
+        <div></div>
+  <script>
+      var form = document.querySelector('form')
+      var input = document.querySelector('input')
+      var div = document.querySelector('#random-card')
+
+fetch('https://netrunnerdb.com/api/2.0/public/cards')
+.then(function(response) {
+  return response.json()
+})
+.then(function(x) {
+  let rand = Math.floor(Math.random() * x.data.length)
+  let card = x.data[rand]
+  var cardImage = (card.hasOwnProperty('image_url')) ? `<img src=${card['image_url']} alt="">` : null
+  console.log(cardImage)
+  div.innerHTML = `${cardImage}`
+})
+
+
+
+
+  </script>
+</body>
+</html>

@@ -77,7 +77,9 @@ button {
   border: solid black 1px;
   border-radius: 5%;
 }
-
+#random-card {
+  margin: 0 auto;
+}
 .hide {
   display: none;
 }
