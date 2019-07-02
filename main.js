@@ -58,7 +58,7 @@ fetch('https://netrunnerdb.com/api/2.0/public/cards')
 .then(function(x) {
   let rand = Math.floor(Math.random() * x.data.length)
   let card = x.data[rand]
-  var cardImage = (card.hasOwnProperty('image_url')) ? `<img src=${card['image_url']} alt="">` : `>img src=<https://netrunnerdb.com/find/?q=${card['title'].split(' ').join('+').toLowerCase()}>`
+  var cardImage = (card.hasOwnProperty('image_url')) ? `<img src=${card['image_url']} alt="">` : `<img src=https://netrunnerdb.com/find/?q=${card['title'].split(' ').join('+').toLowerCase()}>`
   document.getElementById('random-card').innerHTML = `${cardImage}`
 })
 
