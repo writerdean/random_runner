@@ -48,11 +48,12 @@ function chooseAgendas(deck) {
         playerHandAgendas.push(agendas.splice(index, 1))
         agendaPoints = agendaPoints + testCard["agenda_points"] 
         playerHandAgendas = playerHandAgendas.flat()
+        // console.log(`agendaPoints:`, agendaPoints, `playerHandAgendas length:`, playerHandAgendas.length)
         break;
       }
     }
   }    
-  console.log(agendaPoints) 
+  // console.log(`agenda points`, agendaPoints) 
   playerHandAgendas = playerHandAgendas.flat()  
   let agendasPlus = {points: agendaPoints, array: [playerHandAgendas]} 
   return agendasPlus

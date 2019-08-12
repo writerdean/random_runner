@@ -22,13 +22,14 @@ function ownedPacks(item) {
   // item["pack_code"] === "dag" ||
   item["pack_code"] === "si" ||
   item["pack_code"] === "tlm" ||
-  // item["pack_code"] === "ftm" ||
+  item["pack_code"] === "ftm" ||
   item["pack_code"] === "23s" ||
   // item["pack_code"] === "ml" ||
   // item["pack_code"] === "qu" ||
   item["pack_code"] === "baw" ||
   // item["pack_code"] === "fm" ||
   item["pack_code"] === "td" ||
+  item["pack_code"] === "asis" ||
   item["pack_code"] === "core2" ||
   item["pack_code"] === "rar" ||
   item["pack_code"] === "df" ||
@@ -117,7 +118,6 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
 }
 
 function displayCorpDeck(deck) { 
-  console.log('display Corp Deck')
   let titleDeck = groupBy(deck, 'title')
   let titles = Object.keys(titleDeck)
   
