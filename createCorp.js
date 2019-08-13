@@ -17,7 +17,6 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   }
   let min = currentIdentity.minimum_deck_size
   console.log(`THIS IS THE MINIMUM DECK SIZE AS PER IDENTITY: ${min}`)
-  // console.log(min, currentIdentity)
   playerHand.push(currentIdentity)
   playerHand.push(chooseAgendas(deck).array)
   playerHand.push(chooseIce(deck))

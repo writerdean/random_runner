@@ -40,7 +40,7 @@ function ownedPacks(item) {
 }
 
 const cards = data.filter(ownedPacks)
-let div = document.getElementById('random-card')
+// let div = document.getElementById('random-card')
 let jintekiPool = putAllCardsInDeck(createFactionDeck('corp', 'jinteki')) 
 let hbPool = putAllCardsInDeck(createFactionDeck('corp', 'haas-bioroid')) 
 let nbnPool = putAllCardsInDeck(createFactionDeck('corp', 'nbn')) 
@@ -203,6 +203,7 @@ function displayDeck(deck) {
     if (document.getElementById('resource-content').children.length > 1) {
       document.getElementById('resource-content').children[0].innerText = 'Resources'
     }
+  document.querySelector('#random-card').classList.add('hide')
   document.querySelector('#corp-identity-chooser').classList.add('hide')
   document.querySelector('#runner-identity-chooser').classList.add('hide')
   document.querySelector('#choose-identity-container').classList.add('hide')

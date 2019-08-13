@@ -36,12 +36,15 @@ function chooseFromRunnerIdentityList() {
 }
 
 function chooseFromCorpIdentityList() {
-  for (let i = 0; i < runnersIdentities.length; i++) {
+  console.log(corpIdentities)
+  console.log(`choose from corp identities called`)
+  for (let i = 0; i < corpIdentities.length; i++) {
     let option = document.createElement('option');
     let node = document.createTextNode(corpIdentities[i]['title']);
     option.appendChild(node);
     let element = document.getElementById('corp-identity-dropdown');
     element.appendChild(option);
+    // console.log(node)
   }
   document.getElementById('corp-identity-dropdown').addEventListener('change', changePerson);
   }
