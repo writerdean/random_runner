@@ -11,26 +11,40 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   }
   let currentFaction = deck[0]['faction_code']
   let playerHand = []
+  let playerHandTest = []
   
   if (currentIdentity == null) {
     currentIdentity = chooseIdentity('corp', currentFaction)
   }
   let min = currentIdentity.minimum_deck_size
-  console.log(`THIS IS THE MINIMUM DECK SIZE AS PER IDENTITY: ${min}`)
-  playerHand.push(currentIdentity)
-  playerHand.push(chooseAgendas(deck).array)
-  playerHand.push(chooseIce(deck))
-  playerHand.push(chooseAssets(deck))
-  playerHand.push(chooseUpgrades(deck))
-  playerHand = playerHand.flat()
-  playerHand.push(chooseOperations(deck, playerHand.length, min))
-  playerHand =  playerHand.flat()
-
-  return playerHand.flat().sort(function(a, b){
-          if(a.title < b.title) { return -1; }
-          if(a.title > b.title) { return 1; }
-          return 0;
-        })
+  // console.log(`THIS IS THE MINIMUM DECK SIZE AS PER IDENTITY: ${min}`)
+  playerHandTest.push(currentIdentity)
+  playerHandTest.push(chooseAgendas(deck))
+  playerHandTest.push(chooseIce(deck))
+  playerHandTest.push(chooseAssets(deck))
+  playerHandTest.push(chooseUpgrades(deck))
+  // debugger
+  let length = playerHandTest[1].length + playerHandTest[2].length + playerHandTest[3].length + playerHandTest[4].length
+  console.log(length)
+  playerHandTest.push(chooseOperations(deck, length, min))
+  // playerHand.push(currentIdentity)
+  // playerHand.push(chooseAgendas(deck).array)
+  // playerHand =  playerHand.flat()
+  // playerHand.push(chooseIce(deck).array)
+  // playerHand =  playerHand.flat()
+  // playerHand.push(chooseAssets(deck).array)
+  // playerHand =  playerHand.flat()
+  // playerHand.push(chooseUpgrades(deck).array)
+  // console.log(`playerHand so far`, playerHand)
+  // playerHand =  playerHand.flat()
+  // playerHand.push(chooseOperations(deck, playerHand.flat().length, min))
+  // playerHand =  playerHand.flat()
+  // return playerHand.flat().sort(function(a, b){
+  //         if(a.title < b.title) { return -1; }
+  //         if(a.title > b.title) { return 1; }
+  //         return 0;
+  //       })
+  return playerHandTest;
 }
 
 function chooseAgendas(deck) { 
@@ -47,14 +61,13 @@ function chooseAgendas(deck) {
         playerHandAgendas.push(agendas.splice(index, 1))
         agendaPoints = agendaPoints + testCard["agenda_points"] 
         playerHandAgendas = playerHandAgendas.flat()
-        // console.log(`agendaPoints:`, agendaPoints, `playerHandAgendas length:`, playerHandAgendas.length)
         break;
       }
     }
   }    
-  // console.log(`agenda points`, agendaPoints) 
   playerHandAgendas = playerHandAgendas.flat()  
-  let agendasPlus = {points: agendaPoints, array: [playerHandAgendas]} 
+  let agendasPlus = {length: playerHandAgendas.flat().length, points: agendaPoints, array: [playerHandAgendas]} 
+  // console.log(`agenda length`, agendasPlus.array[0].length, agendasPlus.array)
   return agendasPlus
 }
 
@@ -95,7 +108,9 @@ function chooseIce(deck) {
       }
     }
   }
-  return playerHandIce.flat()
+  let icePlus = {length: playerHandIce.flat().length, array: [playerHandIce]}
+  // console.log(`ice length`, icePlus.array[0].length, icePlus.array)
+  return icePlus;
 }
 
 function chooseAssets(deck) {
@@ -105,7 +120,6 @@ function chooseAssets(deck) {
   }
 )
   let padIndex = assets.findIndex(x => x.code === "01109");
-  // debugger
   playerHandAssets.push(assets.splice(padIndex, 3))
   for (var i = 0; i <= 3; i ++) {
     while(true){
@@ -117,9 +131,11 @@ function chooseAssets(deck) {
         break;
       }
     }
-
   }
-  return playerHandAssets.flat()
+  let assetsPlus = {length: playerHandAssets.flat().length, array: [playerHandAssets]}
+  // console.log(`assets length`, assetsPlus.array[0].length, assetsPlus.array)
+return assetsPlus
+  // return playerHandAssets.flat()
 }
 
 function chooseUpgrades(deck) {
@@ -138,16 +154,20 @@ function chooseUpgrades(deck) {
       }
     }
   }
-  return playerHandUpgrades.flat()
+  let upgradesPlus = {length: playerHandUpgrades.flat().length, array: [playerHandUpgrades]}
+  return upgradesPlus
+  // return playerHandUpgrades.flat()
 }
 
 function chooseOperations(deck, length, min) {
+  console.log(`length passed to chooseOperations`, length)
   let playerHandOperations = []
   let operations = deck.filter(function(el) {
     return el['type_code'] == 'operation'
   })
   let hedgeIndex = operations.findIndex(x => x.code === "01110");
   playerHandOperations.push(operations.splice(hedgeIndex, 3))
+  console.log(`choose operations`, length, playerHandOperations.length, min)
   while (length+playerHandOperations.length < min) {
 
     while(true){
@@ -159,8 +179,11 @@ function chooseOperations(deck, length, min) {
         break;
       }
     }
+    // debugger
   }
-  return playerHandOperations.flat()
+  let operationsPlus = {length: playerHandOperations.flat().length, array: [playerHandOperations]}
+  return operationsPlus
+  // return playerHandOperations.flat()
 }
 
 

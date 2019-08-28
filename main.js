@@ -117,55 +117,68 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
   return factionPool
 }
 
-function displayCorpDeck(deck) { 
-  let titleDeck = groupBy(deck, 'title')
-  let titles = Object.keys(titleDeck)
-  
-  titles.forEach(function(item) {
-    var content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
-    var card = (titleDeck[item][0]['type_code'] == 'identity') && 
-    (titleDeck[item][0].hasOwnProperty('image_url')) ? 
-    `<img src=${titleDeck[item][0]['image_url']} alt="">` : 
-    (titleDeck[item][0]['type_code'] == 'identity') ? 
-    `<img src="https://netrunnerdb.com/card_image/${titleDeck[item][0]['code']}.png" alt="">` : 
-    (titleDeck[item][0]['type_code'] == 'ice') ? 
-    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
-    (titleDeck[item][0]['type_code'] == 'agenda') ? 
-    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]} </a> <span class='subtext'>(${titleDeck[item][0]["advancement_cost"]} / ${titleDeck[item][0]["agenda_points"]})</span>` : 
-    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`
-    // cost/points/strength
-    var classes = content.classList;
-    classes.remove('hide');
-    if(titleDeck[item][0]['faction_code'] == 'neutral-corp') {
-      content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`
-    } else {
-      content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
-    }
-  })
+function displayCorpDeck(deck) {
+  console.log(deck)
+}
 
-  if (document.getElementById('agenda-content').children.length > 1) {
-    document.getElementById('agenda-content').children[0].innerText = 'Agendas'
-  }
-  
-  if (document.getElementById('asset-content').children.length > 1) {
-    document.getElementById('asset-content').children[0].innerText = 'Assets'
-  }
+// function displayCorpDeck(deck) { 
+//   // console.log(`deck`, deck)
+//   let count = groupBy(deck, 'type_code')
+//   // console.log(`count`, count)
+//   let titleDeck = groupBy(deck, 'title')
+//   let titles = Object.keys(titleDeck)
 
-  if (document.getElementById('operation-content').children.length > 1) {
-    document.getElementById('operation-content').children[0].innerText = 'Operations'
-  }
-  
-  if (document.getElementById('upgrade-content').children.length > 1) {
-    document.getElementById('upgrade-content').children[0].innerText = 'Upgrades'
-  }
-  document.querySelector('#random-card').classList.add('hide')
-  document.querySelector('#corp-identity-chooser').classList.add('hide')
-  document.querySelector('#runner-identity-chooser').classList.add('hide')
-  document.querySelector('#choose-identity-container').classList.add('hide')
+//   titles.forEach(function(item) {
+//     var content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
+//     var elementId = `${titleDeck[item][0]["type_code"]}-count`
+//     var typeCountElement = document.getElementById(elementId)
+//     var type = `${titleDeck[item][0]["type_code"]}`
+//     var typeCountContent = `${titleDeck[item][0]["type_code"]}-count`
+//     debugger
+//     typeCountElement.innerText = 'test'
 
-  let showDeck = groupBy(deck, 'type_code')
-  return showDeck
-} 
+//     var card = (titleDeck[item][0]['type_code'] == 'identity') && 
+//     (titleDeck[item][0].hasOwnProperty('image_url')) ? 
+//     `<img src=${titleDeck[item][0]['image_url']} alt="">` : 
+//     (titleDeck[item][0]['type_code'] == 'identity') ? 
+//     `<img src="https://netrunnerdb.com/card_image/${titleDeck[item][0]['code']}.png" alt="">` : 
+//     (titleDeck[item][0]['type_code'] == 'ice') ? 
+//     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
+//     (titleDeck[item][0]['type_code'] == 'agenda') ? 
+//     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]} </a> <span class='subtext'>(${titleDeck[item][0]["advancement_cost"]} / ${titleDeck[item][0]["agenda_points"]})</span>` : 
+//     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`
+//     // cost/points/strength
+//     var classes = content.classList;
+//     classes.remove('hide');
+//     if(titleDeck[item][0]['faction_code'] == 'neutral-corp') {
+//       content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`
+//     } else {
+//       content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+//     }
+//   })
+
+//   if (document.getElementById('agenda-content').children.length > 1) {
+//     document.getElementById('agenda-content').children[0].innerText = 'Agendas'
+//   }
+  
+//   if (document.getElementById('asset-content').children.length > 1) {
+//     document.getElementById('asset-content').children[0].innerText = 'Assets'
+//   }
+
+//   if (document.getElementById('operation-content').children.length > 1) {
+//     document.getElementById('operation-content').children[0].innerText = 'Operations'
+//   }
+  
+//   if (document.getElementById('upgrade-content').children.length > 1) {
+//     document.getElementById('upgrade-content').children[0].innerText = 'Upgrades'
+//   }
+//   document.querySelector('#random-card').classList.add('hide')
+//   document.querySelector('#corp-identity-chooser').classList.add('hide')
+//   document.querySelector('#runner-identity-chooser').classList.add('hide')
+//   document.querySelector('#choose-identity-container').classList.add('hide')
+//   let showDeck = groupBy(deck, 'type_code')
+//   return showDeck
+// } 
 
 
 function displayDeck(deck) { 
@@ -218,8 +231,6 @@ window.onload=function(){
     const nodeList = Array.from(document.querySelectorAll('.submit'))
     for (let i = 0; i < nodeList.length; i++) {
       if (nodeList[i].classList.contains('clicked')) {
-        // console.log('blah')
-        // console.log('clicked')
       } else {
         (nodeList[i].classList.add('hide'))
       }

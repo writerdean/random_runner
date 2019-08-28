@@ -36,8 +36,6 @@ function chooseFromRunnerIdentityList() {
 }
 
 function chooseFromCorpIdentityList() {
-  console.log(corpIdentities)
-  console.log(`choose from corp identities called`)
   for (let i = 0; i < corpIdentities.length; i++) {
     let option = document.createElement('option');
     let node = document.createTextNode(corpIdentities[i]['title']);
