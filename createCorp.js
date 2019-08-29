@@ -64,10 +64,9 @@ function chooseAgendas(deck) {
         break;
       }
     }
-  }    
+  }  
   playerHandAgendas = playerHandAgendas.flat()  
-  let agendasPlus = {length: playerHandAgendas.flat().length, points: agendaPoints, array: [playerHandAgendas]} 
-  // console.log(`agenda length`, agendasPlus.array[0].length, agendasPlus.array)
+  let agendasPlus = {type: playerHandAgendas[0]["type_code"], length: playerHandAgendas.flat().length, points: agendaPoints, array: [playerHandAgendas]} 
   return agendasPlus
 }
 
@@ -108,7 +107,7 @@ function chooseIce(deck) {
       }
     }
   }
-  let icePlus = {length: playerHandIce.flat().length, array: [playerHandIce]}
+  let icePlus = {type: playerHandIce[0]["type_code"], length: playerHandIce.flat().length, array: [playerHandIce]}
   // console.log(`ice length`, icePlus.array[0].length, icePlus.array)
   return icePlus;
 }
@@ -132,7 +131,7 @@ function chooseAssets(deck) {
       }
     }
   }
-  let assetsPlus = {length: playerHandAssets.flat().length, array: [playerHandAssets]}
+  let assetsPlus = {type: playerHandAssets[0]["type_code"], length: playerHandAssets.flat().length, array: [playerHandAssets]}
   // console.log(`assets length`, assetsPlus.array[0].length, assetsPlus.array)
 return assetsPlus
   // return playerHandAssets.flat()
@@ -154,7 +153,7 @@ function chooseUpgrades(deck) {
       }
     }
   }
-  let upgradesPlus = {length: playerHandUpgrades.flat().length, array: [playerHandUpgrades]}
+  let upgradesPlus = {type: playerHandUpgrades[0]["type_code"], length: playerHandUpgrades.flat().length, array: [playerHandUpgrades]}
   return upgradesPlus
   // return playerHandUpgrades.flat()
 }
@@ -181,7 +180,7 @@ function chooseOperations(deck, length, min) {
     }
     // debugger
   }
-  let operationsPlus = {length: playerHandOperations.flat().length, array: [playerHandOperations]}
+  let operationsPlus = {type: playerHandOperations[0]["type_code"], length: playerHandOperations.flat().length, array: [playerHandOperations]}
   return operationsPlus
   // return playerHandOperations.flat()
 }

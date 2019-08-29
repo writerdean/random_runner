@@ -118,7 +118,14 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
 }
 
 function displayCorpDeck(deck) {
-  console.log(deck)
+  for (let i = 1; i < deck.length; i++) {
+    console.log(deck)
+    let type = deck[i]["array"][0][0]["type_code"]
+    console.log(type)
+    
+  }
+// find type_code of each array
+// 
 }
 
 // function displayCorpDeck(deck) { 
