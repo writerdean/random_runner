@@ -118,14 +118,35 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
 }
 
 function displayCorpDeck(deck) {
-  for (let i = 1; i < deck.length; i++) {
-    console.log(deck)
-    let type = deck[i]["array"][0][0]["type_code"]
-    console.log(type)
-    
-  }
-// find type_code of each array
-// 
+  console.log(deck)
+  // debugger
+  var type = deck[1]["type"]
+  console.log(type)
+  var image = deck[1]["array"][0][0]["image_url"]
+  // var content = document.getElementById(`${type}-content`)
+  var content = document.getElementById('identity-content')
+  console.log(`content`, content)
+  var ident = deck[0]
+  var card =   ident.hasOwnProperty('image_url') ?  `<img src="http://www.cardgamedb.com/forums/uploads/an/med_ADN35_107.png" alt="">` : `<img src="https://netrunnerdb.com/card_image/${ident['code']}.png" alt="">` 
+  console.log(`card`, card)
+  content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+    var classes = content.classList;
+    classes.remove('hide');
+    document.getElementById('random-card').classList.add('hide')
+
+  // debugger
+  // for (var i = 1; i < deck.length; i++) {
+  //   console.log(deck)
+  //   console.log(ident)
+  //   console.log(`type`, type)
+  //   console.log(`image`, image)
+  // // each 'i' is an array of the types, including type name, length, and array of cards
+
+  //   // put identity into div#'identity-image'
+  //   // hide random image
+  //   // let card =  (type == 'identity') &&
+  // }
+
 }
 
 // function displayCorpDeck(deck) { 
