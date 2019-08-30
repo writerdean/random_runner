@@ -118,32 +118,34 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
 }
 
 function displayCorpDeck(deck) {
-  // debugger
   var type = deck[1]["type"]
   console.log(type)
   var image = deck[1]["array"][0][0]["image_url"]
   var content = document.getElementById('identity-content')
   var ident = deck[0]
-  // debugger
   var card =   ident.hasOwnProperty('image_url') ?  `<img src="${deck[0]['image_url']}" alt="">` : `<img src="https://netrunnerdb.com/card_image/${ident['code']}.png" alt="">` 
   content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
     var classes = content.classList;
     classes.remove('hide');
     document.getElementById('random-card').classList.add('hide')
 
-  // debugger
   for (var i = 1; i < deck.length; i++) {
+    debugger
+    deck[i]['array'][0].sort(function(a, b) {
+      if(a.title < b.title) { return -1; }
+      if(a.title > b.title) { return 1; }
+      return 0;
+    })
   // each 'i' is an array of the types, including type name, length, and array of cards
     for (var x = 1; x < deck[i].length; x++) {
-      console.log(deck[i]['array'][0][x])
       var type = deck[i]['type']
       var content = document.getElementById(`${type}-content`)
       content.classList.remove('hide')
-      // debugger
       content.innerHTML = content.innerHTML + `<li>${deck[i]['array'][0][x].title}</li>`
     }
+    var typeCountContainer = document.getElementById(`${type}-count`)
+    typeCountContainer.innerText = deck[i].length
   }
-
 }
 
 // function displayCorpDeck(deck) { 
