@@ -130,7 +130,7 @@ function displayCorpDeck(deck) {
     document.getElementById('random-card').classList.add('hide')
 
   for (var i = 1; i < deck.length; i++) {
-    debugger
+    // debugger
     deck[i]['array'][0].sort(function(a, b) {
       if(a.title < b.title) { return -1; }
       if(a.title > b.title) { return 1; }
@@ -146,6 +146,25 @@ function displayCorpDeck(deck) {
     var typeCountContainer = document.getElementById(`${type}-count`)
     typeCountContainer.innerText = deck[i].length
   }
+
+    if (document.getElementById('agenda-content').children.length > 1) {
+    document.getElementById('agenda-content').children[0].innerText = 'Agendas'
+  }
+  
+  if (document.getElementById('asset-content').children.length > 1) {
+    document.getElementById('asset-content').children[0].innerText = 'Assets'
+  }
+
+  if (document.getElementById('operation-content').children.length > 1) {
+    document.getElementById('operation-content').children[0].innerText = 'Operations'
+  }
+  
+  if (document.getElementById('upgrade-content').children.length > 1) {
+    document.getElementById('upgrade-content').children[0].innerText = 'Upgrades'
+  }
+  document.querySelector('#corp-identity-chooser').classList.add('hide')
+  document.querySelector('#runner-identity-chooser').classList.add('hide')
+  document.querySelector('#choose-identity-container').classList.add('hide')
 }
 
 // function displayCorpDeck(deck) { 
