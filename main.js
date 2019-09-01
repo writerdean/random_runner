@@ -8,6 +8,7 @@ function ownedPacks(item) {
   item["pack_code"] === "om" ||
   item["pack_code"] === "st" ||
   item["pack_code"] === "mt" ||
+  item["pack_code"] === "ce" ||
   item["pack_code"] === "up" ||
   item["pack_code"] === "tbs" ||
   item["pack_code"] === "fc" ||
