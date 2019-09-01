@@ -73,6 +73,10 @@ a:link {
   /* overflow: auto; */
 }
 
+.inline {
+  display: inline;
+}
+
 button {
   background-color: white;
   margin: 2px;

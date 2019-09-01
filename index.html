@@ -16,16 +16,12 @@
   <title>Random Runner</title>
 </head>
 <body>
-    <!-- <div> <button class="g-signin2" id="my-signin2" onclick="onSignIn()">Sign In</button></div> -->
     <div> <button class="home" onClick="window.location.reload()">Start Over</button></div>
 
-    <!-- <a href="#" onclick="signOut();">Sign out</a> -->
-    <!-- <button>Random</button> -->
 
     <button id='corp-identity-chooser' onclick='chooseFromCorpIdentityList()'>CORP</button>
     <button id='runner-identity-chooser' onClick='chooseFromRunnerIdentityList()'>RUNNER</button>
 
-  <!-- We will put our React component inside this div. -->
     <div id='like_button_container'></div>
 
     <div id="random-card"></div>
@@ -54,7 +50,6 @@
     <div class='right'>
       <div class='runner-button-wrapper'>
         <button class='submit' id='runner' onclick='displayDeck(buildRunnerDeck())'>RUNNER</button>
-        <!-- <button class='submit' onclick='chooseRunnerIdentity()'>Choose Identity</button> -->
         <button class='submit' id='anarch' onclick='displayDeck(buildRunnerDeck(anarchPool))'>Anarch</button>
         <button class='submit' id='criminal' onclick='displayDeck(buildRunnerDeck(criminalPool))'>Criminal</button>
         <button class='submit' id='shaper' onclick='displayDeck(buildRunnerDeck(shaperPool))'>Shaper</button>
@@ -82,28 +77,18 @@
   <div class='content' id='identity-image'></div>
     <div class='content' id='identity-content'></div>
   <div class='all-content'>
-    <ul class='content corp hide' id='agenda-content'><p class='heading'>Agenda <div id='agenda-count'></div></p></ul>
+    <ul class='content corp hide' id='agenda-content'><p class='heading'>Agenda <div id='agenda-count' style='display:inline'></div></p></ul>
     <ul class='content corp hide' id='asset-content'><p class='heading'>Asset <div id='asset-count'></div></p></ul>
     <ul class='content runner hide' id='event-content'><p class='heading'>Event <div id='event-count'></div></p></ul>
     <ul class='content runner hide' id='hardware-content'><p>Hardware <div id='hardware-count'></div></p></ul>
-    <ul class='content corp hide' id='ice-content'><p>Ice</p></ul>
-    <ul class='content runner hide' id='icebreaker-content'><p class='heading'>Icebreaker <div id='ice-count'></div></p></ul>
+    <ul class='content corp hide' id='ice-content'><p>Ice<div id='ice-count'></div></p></ul>
+    <ul class='content runner hide' id='icebreaker-content'><p class='heading'>Icebreaker <div id='icebreaker-count'></div></p></ul>
     <ul class='content corp hide' id='operation-content'><p class='heading'>Operation <div id='operation-count'></div></p></ul>
     <ul class='content runner hide' id='program-content'><p class='heading'>Program <div id='program-count'></div></p></ul>
     <ul class='content runner hide' id='resource-content'><p class='heading'>Resource <div id='resource-count'></div></p></ul>
     <ul class='content corp hide' id='upgrade-content'><p class='heading'>Upgrade <div id='upgrade-count'></div></p></ul>
   </div>
-
-  
-
 </div>
-  <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-  <!-- Load our React component. -->
-  <script src="likeButton.js"></script>
-  
 </body>
 </html>

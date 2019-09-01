@@ -60,6 +60,7 @@ fetch('https://netrunnerdb.com/api/2.0/public/cards')
   let rand = Math.floor(Math.random() * x.data.length)
   let card = x.data[rand]
   var cardImage = (card.hasOwnProperty('image_url')) ? `<img src=${card['image_url']} alt="">` : `<img src=https://netrunnerdb.com/find/?q=${card['title'].split(' ').join('+').toLowerCase()}>`
+  console.log(cardImage)
   document.getElementById('random-card').innerHTML = `${cardImage}`
 })
 
@@ -119,7 +120,6 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
 
 function displayCorpDeck(deck) {
   var type = deck[1]["type"]
-  console.log(type)
   var image = deck[1]["array"][0][0]["image_url"]
   var content = document.getElementById('identity-content')
   var ident = deck[0]
@@ -130,7 +130,7 @@ function displayCorpDeck(deck) {
     document.getElementById('random-card').classList.add('hide')
 
   for (var i = 1; i < deck.length; i++) {
-    // debugger
+    console.log(deck[i])
     deck[i]['array'][0].sort(function(a, b) {
       if(a.title < b.title) { return -1; }
       if(a.title > b.title) { return 1; }
@@ -141,14 +141,23 @@ function displayCorpDeck(deck) {
       var type = deck[i]['type']
       var content = document.getElementById(`${type}-content`)
       content.classList.remove('hide')
+
+      // var card = if card is agenda, display title, cost and points, if not, 
+        // if card is ice, display title, cost and strength, if not,
+        // if card is neutral, add classList
+
+
+      // `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
+
       content.innerHTML = content.innerHTML + `<li>${deck[i]['array'][0][x].title}</li>`
     }
     var typeCountContainer = document.getElementById(`${type}-count`)
+    console.log(`typeCountContainer`, typeCountContainer )
     typeCountContainer.innerText = deck[i].length
   }
 
     if (document.getElementById('agenda-content').children.length > 1) {
-    document.getElementById('agenda-content').children[0].innerText = 'Agendas'
+    document.getElementById('agenda-content').children[0].innerText = `Agendas`
   }
   
   if (document.getElementById('asset-content').children.length > 1) {
@@ -183,8 +192,7 @@ function displayCorpDeck(deck) {
 //     debugger
 //     typeCountElement.innerText = 'test'
 
-//     var card = (titleDeck[item][0]['type_code'] == 'identity') && 
-//     (titleDeck[item][0].hasOwnProperty('image_url')) ? 
+//     var card = (titleDeck[item][0]['type_code'] == 'identity') &&  (titleDeck[item][0].hasOwnProperty('image_url')) ? 
 //     `<img src=${titleDeck[item][0]['image_url']} alt="">` : 
 //     (titleDeck[item][0]['type_code'] == 'identity') ? 
 //     `<img src="https://netrunnerdb.com/card_image/${titleDeck[item][0]['code']}.png" alt="">` : 
