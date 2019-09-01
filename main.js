@@ -8,6 +8,7 @@ function ownedPacks(item) {
   item["pack_code"] === "om" ||
   item["pack_code"] === "st" ||
   item["pack_code"] === "mt" ||
+  item["pack_code"] === "ce" ||
   item["pack_code"] === "up" ||
   item["pack_code"] === "tbs" ||
   item["pack_code"] === "fc" ||
@@ -60,7 +61,7 @@ fetch('https://netrunnerdb.com/api/2.0/public/cards')
   let rand = Math.floor(Math.random() * x.data.length)
   let card = x.data[rand]
   var cardImage = (card.hasOwnProperty('image_url')) ? `<img src=${card['image_url']} alt="">` : `<img src=https://netrunnerdb.com/find/?q=${card['title'].split(' ').join('+').toLowerCase()}>`
-  console.log(cardImage)
+  // console.log(cardImage)
   document.getElementById('random-card').innerHTML = `${cardImage}`
 })
 
@@ -152,24 +153,29 @@ function displayCorpDeck(deck) {
       content.innerHTML = content.innerHTML + `<li>${deck[i]['array'][0][x].title}</li>`
     }
     var typeCountContainer = document.getElementById(`${type}-count`)
-    console.log(`typeCountContainer`, typeCountContainer )
+    // console.log(`typeCountContainer`, typeCountContainer )
     typeCountContainer.innerText = deck[i].length
   }
 
     if (document.getElementById('agenda-content').children.length > 1) {
-    document.getElementById('agenda-content').children[0].innerText = `Agendas`
+    document.getElementById('agenda-content').children[0].innerText = `Agendas  ( ${document.getElementById('agenda-content').children.length } )`
   }
   
   if (document.getElementById('asset-content').children.length > 1) {
-    document.getElementById('asset-content').children[0].innerText = 'Assets'
+    document.getElementById('asset-content').children[0].innerText =  `Assets ( ${document.getElementById('asset-content').children.length } )`
   }
 
   if (document.getElementById('operation-content').children.length > 1) {
-    document.getElementById('operation-content').children[0].innerText = 'Operations'
+    document.getElementById('operation-content').children[0].innerText = `Operations ( ${document.getElementById('operation-content').children.length } )`
   }
   
   if (document.getElementById('upgrade-content').children.length > 1) {
-    document.getElementById('upgrade-content').children[0].innerText = 'Upgrades'
+    document.getElementById('upgrade-content').children[0].innerText = `Upgrades  ( ${document.getElementById('upgrade-content').children.length } )`
+  }
+
+  if (document.getElementById('ice-content').children.length > 0) {
+    console.log(document.getElementById('ice-content').children.length)
+    document.getElementById('ice-content').children[0].innerText = `Ice  ( ${document.getElementById('ice-content').children.length } )`
   }
   document.querySelector('#corp-identity-chooser').classList.add('hide')
   document.querySelector('#runner-identity-chooser').classList.add('hide')
