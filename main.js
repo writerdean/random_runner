@@ -1,5 +1,4 @@
 let data = eachCard.data
-// let data = cardsService.getAll();
 let currentIdentity
 let currentFaction
 
