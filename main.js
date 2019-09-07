@@ -39,7 +39,7 @@ function ownedPacks(item) {
   // just opened democracy and dogma
 }
 
-const cards = data.filter(ownedPacks)
+const cards = cards.data.filter(ownedPacks)
 // let div = document.getElementById('random-card')
 let jintekiPool = putAllCardsInDeck(createFactionDeck('corp', 'jinteki')) 
 let hbPool = putAllCardsInDeck(createFactionDeck('corp', 'haas-bioroid')) 
