@@ -116,7 +116,6 @@ function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction)
 
 function displayCorpDeck(deck) {
   var type = deck[1]["type"]
-  var image = deck[1]["array"][0][0]["image_url"]
   var content = document.getElementById('identity-content')
   var ident = deck[0]
   var card =   ident.hasOwnProperty('image_url') ?  `<img src="${deck[0]['image_url']}" alt="">` : `<img src="https://netrunnerdb.com/card_image/${ident['code']}.png" alt="">` 
@@ -124,6 +123,7 @@ function displayCorpDeck(deck) {
     var classes = content.classList;
     classes.remove('hide');
     document.getElementById('random-card').classList.add('hide')
+
 
   for (var i = 1; i < deck.length; i++) {
     // console.log(deck[i])
@@ -133,17 +133,51 @@ function displayCorpDeck(deck) {
       return 0;
     })
   // each 'i' is an array of the types, including type name, length, and array of cards
+
+
     for (var x = 1; x < deck[i]['array'][0].length; x++) {
+
+      let arrayGrouped = groupBy(deck[i]['array'][0], 'title')
+      let titles = Object.keys(arrayGrouped)
+
+      titles.forEach(function(item) {
+        var content = document.getElementById(`${arrayGrouped[item][0]["type_code"]}-content`)
+        var card = (arrayGrouped[item][0]['type_code'] == 'identity') && 
+        (arrayGrouped[item][0].hasOwnProperty('image_url')) ? 
+        `<img src=${arrayGrouped[item][0]['image_url']} alt="">` : 
+        (arrayGrouped[item][0]['type_code'] == 'identity') ? 
+        `<img src="https://netrunnerdb.com/card_image/${arrayGrouped[item][0]['code']}.png" alt="">` : 
+
+        (arrayGrouped[item][0]['type_code'] == 'ice') ? 
+        `${arrayGrouped[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${arrayGrouped[item][0]["title"]}</a> <span class='subtext'>(${arrayGrouped[item][0]["keywords"]}) (${arrayGrouped[item][0]["cost"]} / ${arrayGrouped[item][0]["strength"]})</span>` :
+
+        (arrayGrouped[item][0]['type_code'] == 'agenda') ? 
+        `${arrayGrouped[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${arrayGrouped[item][0]["title"]} </a> <span class='subtext'>(${arrayGrouped[item][0]["advancement_cost"]} / ${arrayGrouped[item][0]["agenda_points"]})</span>` : 
+        `${arrayGrouped[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${arrayGrouped[item][0]["title"]}</a>`
+
+        // cost/points/strength
+        var classes = content.classList;
+        classes.remove('hide');
+        if(arrayGrouped[item][0]['faction_code'] == 'neutral-corp') {
+          content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`
+        } else {
+          content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+        }
+      })
+
+
+      // each x is the individual card
+      console.log(`arrayGrouped`, arrayGrouped)
+      console.log(deck[i], deck[i].length)
+      // debugger
       var type = deck[i]['type']
       var cardsInThisArray = deck[i]['array'][0]
       console.log(`cardsInThisArray`, cardsInThisArray)
-      debugger
       var content = document.getElementById(`${type}-content`)
       content.classList.remove('hide')
 
       let eachIndividualCardInArray = deck[i]["array"][0][x]
       console.log(`eachIndividualCardInArray`, eachIndividualCardInArray)
-      // `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
 
       content.innerHTML = content.innerHTML + `<li>${deck[i]['array'][0][x].title}</li>`
     }
@@ -176,9 +210,7 @@ function displayCorpDeck(deck) {
 }
 
 // function displayCorpDeck(deck) { 
-//   // console.log(`deck`, deck)
 //   let count = groupBy(deck, 'type_code')
-//   // console.log(`count`, count)
 //   let titleDeck = groupBy(deck, 'title')
 //   let titles = Object.keys(titleDeck)
 
