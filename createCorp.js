@@ -23,7 +23,7 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   playerHandTest.push(chooseAssets(deck))
   playerHandTest.push(chooseUpgrades(deck))
   let length = playerHandTest[1].length + playerHandTest[2].length + playerHandTest[3].length + playerHandTest[4].length
-  console.log(length)
+  // console.log(length)
   playerHandTest.push(chooseOperations(deck, length, min))
 
   return playerHandTest;
@@ -137,14 +137,12 @@ function chooseUpgrades(deck) {
 }
 
 function chooseOperations(deck, length, min) {
-  console.log(`length passed to chooseOperations`, length)
   let playerHandOperations = []
   let operations = deck.filter(function(el) {
     return el['type_code'] == 'operation'
   })
   let hedgeIndex = operations.findIndex(x => x.code === "01110");
   playerHandOperations.push(operations.splice(hedgeIndex, 3))
-  console.log(`choose operations`, length, playerHandOperations.length, min)
   while (length+playerHandOperations.length < min) {
 
     while(true){

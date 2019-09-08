@@ -131,23 +131,23 @@ function displayCorpDeck(deck) {
     document.getElementById('random-card').classList.add('hide')
 
   for (var i = 1; i < deck.length; i++) {
-    console.log(deck[i])
+    // console.log(deck[i])
     deck[i]['array'][0].sort(function(a, b) {
       if(a.title < b.title) { return -1; }
       if(a.title > b.title) { return 1; }
       return 0;
     })
   // each 'i' is an array of the types, including type name, length, and array of cards
-    for (var x = 1; x < deck[i].length; x++) {
+    for (var x = 1; x < deck[i]['array'][0].length; x++) {
       var type = deck[i]['type']
+      var cardsInThisArray = deck[i]['array'][0]
+      console.log(`cardsInThisArray`, cardsInThisArray)
+      debugger
       var content = document.getElementById(`${type}-content`)
       content.classList.remove('hide')
 
-      // var card = if card is agenda, display title, cost and points, if not, 
-        // if card is ice, display title, cost and strength, if not,
-        // if card is neutral, add classList
-
-
+      let eachIndividualCardInArray = deck[i]["array"][0][x]
+      console.log(`eachIndividualCardInArray`, eachIndividualCardInArray)
       // `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
 
       content.innerHTML = content.innerHTML + `<li>${deck[i]['array'][0][x].title}</li>`
