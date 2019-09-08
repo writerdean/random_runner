@@ -53,17 +53,12 @@ let criminalPool = putAllCardsInDeck(createFactionDeck('runner', 'criminal'))
 let shaperPool = putAllCardsInDeck(createFactionDeck('runner', 'shaper'))
 let randRunFaction = [anarchPool, criminalPool, shaperPool]
 
-fetch('https://netrunnerdb.com/api/2.0/public/cards')
-.then(function(response) {
-  return response.json()
-})
-.then(function(x) {
-  let rand = Math.floor(Math.random() * x.data.length)
-  let card = x.data[rand]
+function getRandomCard() {
+  let rand = Math.floor(Math.random() * data.length)
+  let card = data[rand]
   var cardImage = (card.hasOwnProperty('image_url')) ? `<img src=${card['image_url']} alt="">` : `<img src=https://netrunnerdb.com/find/?q=${card['title'].split(' ').join('+').toLowerCase()}>`
-  // console.log(cardImage)
   document.getElementById('random-card').innerHTML = `${cardImage}`
-})
+}
 
 function createFactionDeck(side, faction) {
     return filterByFaction(faction).concat(filterByNeutral(side))
