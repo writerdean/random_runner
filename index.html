@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <!-- <meta name="google-signin-client_id" content="243909071235-g94ojcot14hfk9d3g4cnuk18jij0pij0.apps.googleusercontent.com"> -->
   <script src="cards.js"></script>
-  <!-- <script src="cardsService.js"></script> -->
   <script src="filters.js"></script>
   <script src="createCorp.js"></script>
   <script src="createRunner.js"></script>
@@ -99,13 +98,12 @@
   
 
 </div>
-  <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-  <!-- Load our React component. -->
-  <script src="likeButton.js"></script>
+
+
+  <script>
+    window.onload = getRandomCard;
+  </script>
   
 </body>
 </html>
