@@ -150,7 +150,3 @@ while (playerHandResources.length < min) {
 return playerHandResources.flat()
 }
 
-// Armitage Codebusting "20059"
-// Sure Gamble "01050"
-// Lucky Find "04109"
-// mustHaveCards2(anarchPool, "20059", "04109" "01050")

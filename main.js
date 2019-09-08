@@ -153,7 +153,6 @@ function displayCorpDeck(deck) {
       content.innerHTML = content.innerHTML + `<li>${deck[i]['array'][0][x].title}</li>`
     }
     var typeCountContainer = document.getElementById(`${type}-count`)
-    // console.log(`typeCountContainer`, typeCountContainer )
     typeCountContainer.innerText = deck[i].length
   }
 
@@ -174,7 +173,6 @@ function displayCorpDeck(deck) {
   }
 
   if (document.getElementById('ice-content').children.length > 0) {
-    console.log(document.getElementById('ice-content').children.length)
     document.getElementById('ice-content').children[0].innerText = `Ice  ( ${document.getElementById('ice-content').children.length } )`
   }
   document.querySelector('#corp-identity-chooser').classList.add('hide')
