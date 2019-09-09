@@ -1,4 +1,3 @@
-
 let runnersIdentities = cards
   .filter(function(el) {
   return (el["type_code"] == "identity" && el["side_code"] == "runner") 
