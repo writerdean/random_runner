@@ -1,40 +1,39 @@
-let data = eachCard.data
-// let data = cardsService.getAll();
-let currentIdentity
-let currentFaction
+let data = eachCard.data;
+let currentIdentity;
+let currentFaction;
 
 function ownedPacks(item) {
-  if (item["pack_code"] === "core" ||
-  item["pack_code"] === "om" ||
-  item["pack_code"] === "st" ||
-  item["pack_code"] === "mt" ||
-  item["pack_code"] === "ce" ||
-  item["pack_code"] === "up" ||
-  item["pack_code"] === "tbs" ||
-  item["pack_code"] === "fc" ||
-  item["pack_code"] === "uao" ||
-  item["pack_code"] === "val" ||
-  item["pack_code"] === "cc" ||
-  item["pack_code"] === "uw" ||
-  item["pack_code"] === "oh" ||
-  item["pack_code"] === "uot" ||
-  item["pack_code"] === "kg" ||
-  item["pack_code"] === "bf" ||
-  // item["pack_code"] === "dag" ||
-  item["pack_code"] === "si" ||
-  item["pack_code"] === "tlm" ||
-  item["pack_code"] === "ftm" ||
-  item["pack_code"] === "23s" ||
-  // item["pack_code"] === "ml" ||
-  // item["pack_code"] === "qu" ||
-  item["pack_code"] === "baw" ||
-  // item["pack_code"] === "fm" ||
-  item["pack_code"] === "td" ||
-  item["pack_code"] === "asis" ||
-  item["pack_code"] === "core2" ||
-  item["pack_code"] === "rar" ||
-  item["pack_code"] === "df" ||
-  item["pack_code"] === "val" ) {
+  if (item["pack_code"] === "core" 
+  || item["pack_code"] === "om" 
+  || item["pack_code"] === "st" 
+  || item["pack_code"] === "mt" 
+  || item["pack_code"] === "ce" 
+  || item["pack_code"] === "up" 
+  || item["pack_code"] === "tbs" 
+  || item["pack_code"] === "fc" 
+  || item["pack_code"] === "uao" 
+  || item["pack_code"] === "val" 
+  || item["pack_code"] === "cc" 
+  || item["pack_code"] === "uw" 
+  || item["pack_code"] === "oh" 
+  || item["pack_code"] === "uot" 
+  || item["pack_code"] === "kg" 
+  || item["pack_code"] === "bf" 
+  || // item["pack_code"] === "dag" 
+  || item["pack_code"] === "si" 
+  || item["pack_code"] === "tlm" 
+  || item["pack_code"] === "ftm" 
+  || item["pack_code"] === "23s" 
+  || // item["pack_code"] === "ml" 
+  || // item["pack_code"] === "qu" 
+  || item["pack_code"] === "baw" 
+  || // item["pack_code"] === "fm" 
+  || item["pack_code"] === "td" 
+  || item["pack_code"] === "asis" 
+  || item["pack_code"] === "core2" 
+  || item["pack_code"] === "rar" 
+  || item["pack_code"] === "df" 
+  || item["pack_code"] === "val" ) {
     return true
   }
   // just opened democracy and dogma
@@ -61,25 +60,25 @@ function getRandomCard() {
 }
 
 function createFactionDeck(side, faction) {
-    return filterByFaction(faction).concat(filterByNeutral(side))
+  return filterByFaction(faction).concat(filterByNeutral(side))
 }
 
 function chooseIdentity(side, faction) {
-    let identities = filterByIdentity()
-    let chooseSide = side
-    let chooseFaction = faction
-    const index = Math.floor(Math.random() * identities.length);
-    let ident = identities[index]
+  let identities = filterByIdentity()
+  let chooseSide = side
+  let chooseFaction = faction
+  const index = Math.floor(Math.random() * identities.length);
+  let ident = identities[index]
 
-    if (faction === undefined) {
-      if (ident['side_code'] == side) {
-        return ident
-      } 
-    }
-    if (ident['faction_code'] == faction) {
-      return ident
+  if (faction === undefined) {
+    if (ident['side_code'] == side) {
+    return ident
     } 
-    return chooseIdentity(chooseSide, chooseFaction)
+  }
+  if (ident['faction_code'] == faction) {
+    return ident
+  } 
+  return chooseIdentity(chooseSide, chooseFaction)
 }
 
 function groupBy(objectArray, property) {
@@ -94,14 +93,14 @@ function groupBy(objectArray, property) {
 }
 
 function countAgendaPoints(deck) {
-      let totalPoints = 0
-      deck.forEach(function(item) {
-        if (item["type_code"] == "agenda") {
-          totalPoints = totalPoints + item["agenda_points"]
-        }
-      })
-      console.log(deck)
-        return totalPoints
+  let totalPoints = 0
+  deck.forEach(function(item) {
+    if (item["type_code"] == "agenda") {
+      totalPoints = totalPoints + item["agenda_points"]
+    }
+  })
+  console.log(deck)
+    return totalPoints
 }
 
 function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction) 
@@ -215,8 +214,6 @@ window.onload=function(){
     const nodeList = Array.from(document.querySelectorAll('.submit'))
     for (let i = 0; i < nodeList.length; i++) {
       if (nodeList[i].classList.contains('clicked')) {
-        // console.log('blah')
-        // console.log('clicked')
       } else {
         (nodeList[i].classList.add('hide'))
       }
