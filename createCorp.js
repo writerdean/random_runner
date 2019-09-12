@@ -1,7 +1,6 @@
 
 function buildCorpDeck(deck) { // pass in (faction)Pool
   if (deck === undefined) { 
-    // console.log(`no faction chosen`) 
     let rand = Math.floor(Math.random() * randCorpFaction.length);
     deck = randCorpFaction[rand];
   }
@@ -15,11 +14,12 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   if (currentIdentity === null) {
     currentIdentity = chooseIdentity('corp', currentFaction);
   }
+  console.log(`currentIdentity`, currentIdentity)
   let min = currentIdentity.minimum_deck_size;
-  // console.log(`THIS IS THE MINIMUM DECK SIZE AS PER IDENTITY: ${min}`)
   playerHand.push(currentIdentity);
-  playerHand.push(chooseAgendas(deck).array);
+  playerHand.push(chooseAgendas(deck));
   playerHand.push(chooseIce(deck));
+  debugger
   playerHand.push(chooseAssets(deck));
   playerHand.push(chooseUpgrades(deck));
   playerHand = playerHand.flat();
@@ -38,36 +38,36 @@ function chooseAgendas(deck) {
   let playerHandAgendas = [];
   let agendas = deck.filter(function(el) {
       return el['type_code'] == 'agenda';
-    })
+    });
   while (agendaPoints < 20) {
-    while(true){
+    while (true) {
       let index = Math.floor(Math.random() * agendas.length);
       let testCard = agendas[index];
       if (playerHandAgendas.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
         playerHandAgendas.push(agendas.splice(index, 1));
-        agendaPoints = agendaPoints + testCard["agenda_points"] ;
+        agendaPoints = agendaPoints + testCard["agenda_points"];
         playerHandAgendas = playerHandAgendas.flat();
-        // console.log(`agendaPoints:`, agendaPoints, `playerHandAgendas length:`, playerHandAgendas.length)
         break;
       }
     }
   }    
-  // console.log(`agenda points`, agendaPoints) 
   playerHandAgendas = playerHandAgendas.flat()  
-  let agendasPlus = {points: agendaPoints, array: [playerHandAgendas]} 
-  return agendasPlus
+  let agendasPlus = {
+    type: playerHandAgendas[0]['type_code'], length: playerHandAgendas.flat().length, points: agendaPoints, array: [playerHandAgendas]
+  };
+  return agendasPlus;
 }
 
-function chooseIce(deck) { 
+function chooseIce(deck) {
   let playerHandIce = [];
   let codeCount = 0;
   let sentryCount = 0;
   let barrierCount = 0;
   let icees = deck.filter(function(el) {
       return el['type_code'] == 'ice';
-    })
+    });
   while (playerHandIce.length < 15) {
-    while(true){
+    while (true) {
       let index = Math.floor(Math.random() * icees.length);
       let testCard = icees[index];
       const maxCards = 5;
@@ -95,8 +95,15 @@ function chooseIce(deck) {
       }
     }
   }
-  return playerHandIce.flat();
+  let icePlus = {
+    type: playerHandIce[0]['type_code'],
+    length: playerHandIce.flat().length,
+    array: [playerHandIce]
+  };
+  return icePlus;
 }
+  // return playerHandIce.flat();
+
 
 function chooseAssets(deck) {
   let playerHandAssets = [];
@@ -119,7 +126,13 @@ function chooseAssets(deck) {
     }
 
   }
-  return playerHandAssets.flat()
+  let assetsPlus = {
+    type: playerHandAssets[0]['type_code'],
+    length: playerHandAssets.flat().length,
+    array: [playerHandAssets]
+  };
+  return assetsPlus;
+  // return playerHandAssets.flat()
 }
 
 function chooseUpgrades(deck) {
@@ -138,7 +151,13 @@ function chooseUpgrades(deck) {
       }
     }
   }
-  return playerHandUpgrades.flat()
+  let upgradesPlus = {
+    type: playerHandUpgrades[0]['type_code'],
+    length: playerHandUpgrades.flat().length,
+    array: [playerHandUpgrades]
+  };
+  return upgradesPlus;
+  // return playerHandUpgrades.flat()
 }
 
 function chooseOperations(deck, length, min) {
@@ -149,21 +168,21 @@ function chooseOperations(deck, length, min) {
   let hedgeIndex = operations.findIndex(x => x.code === "01110");
   playerHandOperations.push(operations.splice(hedgeIndex, 3));
   while (length+playerHandOperations.length < min) {
-
-    while(true){
-      var index = [Math.floor(Math.random() * operations.length)]
+    while (true) {
+      let index = [Math.floor(Math.random() * operations.length)];
       let testCard = operations[index];
-      if(playerHandOperations.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
+      if (playerHandOperations.filter(x => x.title === testCard.title).length < testCard.deck_limit) {
         playerHandOperations.push(operations.splice(index, 1));
         playerHandOperations = playerHandOperations.flat();
         break;
       }
     }
   }
-  return playerHandOperations.flat();
+  let operationsPlus = {
+    type: playerHandOperations[0]['type_code'],
+    length: playerHandOperations.flat().length,
+    array: [playerHandOperations]
+  };
+  return operationsPlus;
+  // return playerHandOperations.flat();
 }
-
-
-// "01110" Hedge Fund, "01109"
-// mustHaveCards((filterByNeutral('corp'), "01110", "01109"))
-// mustHaveCards(jintekiPool, "01110", "01109")

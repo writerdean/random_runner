@@ -19,22 +19,22 @@ function ownedPacks(item) {
   || item["pack_code"] === "uot" 
   || item["pack_code"] === "kg" 
   || item["pack_code"] === "bf" 
-  || // item["pack_code"] === "dag" 
+ // item["pack_code"] === "dag" 
   || item["pack_code"] === "si" 
   || item["pack_code"] === "tlm" 
   || item["pack_code"] === "ftm" 
   || item["pack_code"] === "23s" 
-  || // item["pack_code"] === "ml" 
-  || // item["pack_code"] === "qu" 
+ // item["pack_code"] === "ml" 
+ // item["pack_code"] === "qu" 
   || item["pack_code"] === "baw" 
-  || // item["pack_code"] === "fm" 
+  // item["pack_code"] === "fm"
   || item["pack_code"] === "td" 
   || item["pack_code"] === "asis" 
   || item["pack_code"] === "core2" 
   || item["pack_code"] === "rar" 
   || item["pack_code"] === "df" 
   || item["pack_code"] === "val" ) {
-    return true
+    return true;
   }
   // just opened democracy and dogma
 }
@@ -119,17 +119,19 @@ function displayCorpDeck(deck) {
   
   titles.forEach(function(item) {
     var content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
-    var card = (titleDeck[item][0]['type_code'] == 'identity') && 
+    debugger
+    var card = (titleDeck[item][0]['type_code'] === 'identity') && 
     (titleDeck[item][0].hasOwnProperty('image_url')) ? 
     `<img src=${titleDeck[item][0]['image_url']} alt="">` : 
-    (titleDeck[item][0]['type_code'] == 'identity') ? 
+    (titleDeck[item][0]['type_code'] === 'identity') ? 
     `<img src="https://netrunnerdb.com/card_image/${titleDeck[item][0]['code']}.png" alt="">` : 
-    (titleDeck[item][0]['type_code'] == 'ice') ? 
+    (titleDeck[item][0]['type_code'] === 'ice') ? 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
-    (titleDeck[item][0]['type_code'] == 'agenda') ? 
+    (titleDeck[item][0]['type_code'] === 'agenda') ? 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]} </a> <span class='subtext'>(${titleDeck[item][0]["advancement_cost"]} / ${titleDeck[item][0]["agenda_points"]})</span>` : 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`;
     // cost/points/strength
+    console.log(`card`, card)
     let classes = content.classList;
     classes.remove('hide');
     if (titleDeck[item][0]['faction_code'] == 'neutral-corp') {
