@@ -1,6 +1,6 @@
 
 function buildCorpDeck(deck) { // pass in (faction)Pool
-  if (deck == undefined) { 
+  if (deck === undefined) { 
     console.log(`no faction chosen`) 
     let rand = Math.floor(Math.random() * randCorpFaction.length)
     deck = randCorpFaction[rand]
@@ -13,7 +13,7 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   let playerHand = []
   let playerHandTest = []
   
-  if (currentIdentity == null) {
+  if (currentIdentity === null) {
     currentIdentity = chooseIdentity('corp', currentFaction)
   }
   let min = currentIdentity.minimum_deck_size
@@ -24,12 +24,12 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   playerHandTest.push(chooseUpgrades(deck))
   let length = playerHandTest[1].length + playerHandTest[2].length + playerHandTest[3].length + playerHandTest[4].length
   // console.log(length)
-  playerHandTest.push(chooseOperations(deck, length, min))
+  playerHandTest.push(chooseOperations(deck, length, min));
 
   return playerHandTest;
 }
 
-function chooseAgendas(deck) { 
+function chooseAgendas(deck) {
   let agendaPoints = 0
   let playerHandAgendas = []
   let agendas = deck.filter(function(el) {

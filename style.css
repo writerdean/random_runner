@@ -109,6 +109,7 @@ ul {
 }
 
 .neutral {
+  color: red;
   font-variant: small-caps;
   font-style: italic;
 }
