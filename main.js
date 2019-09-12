@@ -39,36 +39,36 @@ function ownedPacks(item) {
   // just opened democracy and dogma
 }
 
-const cards = data.filter(ownedPacks)
-let div = document.getElementById('random-card')
-let jintekiPool = putAllCardsInDeck(createFactionDeck('corp', 'jinteki')) 
-let hbPool = putAllCardsInDeck(createFactionDeck('corp', 'haas-bioroid')) 
-let nbnPool = putAllCardsInDeck(createFactionDeck('corp', 'nbn')) 
-let weylandPool = putAllCardsInDeck(createFactionDeck('corp', 'weyland-consortium'))
-let randCorpFaction = [jintekiPool, hbPool, nbnPool, weylandPool]
+const cards = data.filter(ownedPacks);
+let div = document.getElementById('random-card');
+let jintekiPool = putAllCardsInDeck(createFactionDeck('corp', 'jinteki'));
+let hbPool = putAllCardsInDeck(createFactionDeck('corp', 'haas-bioroid'));
+let nbnPool = putAllCardsInDeck(createFactionDeck('corp', 'nbn'));
+let weylandPool = putAllCardsInDeck(createFactionDeck('corp', 'weyland-consortium'));
+// let randCorpFaction = [jintekiPool, hbPool, nbnPool, weylandPool]
 
-let anarchPool = putAllCardsInDeck(createFactionDeck('runner', 'anarch'))
-let criminalPool = putAllCardsInDeck(createFactionDeck('runner', 'criminal'))
-let shaperPool = putAllCardsInDeck(createFactionDeck('runner', 'shaper'))
-let randRunFaction = [anarchPool, criminalPool, shaperPool]
+let anarchPool = putAllCardsInDeck(createFactionDeck('runner', 'anarch'));
+let criminalPool = putAllCardsInDeck(createFactionDeck('runner', 'criminal'));
+let shaperPool = putAllCardsInDeck(createFactionDeck('runner', 'shaper'));
+// let randRunFaction = [anarchPool, criminalPool, shaperPool]
 
 function getRandomCard() {
-  let rand = Math.floor(Math.random() * data.length)
-  let card = data[rand]
-  var cardImage = (card.hasOwnProperty('image_url')) ? `<img src=${card['image_url']} alt="">` : `<img src=https://netrunnerdb.com/find/?q=${card['title'].split(' ').join('+').toLowerCase()}>`
-  document.getElementById('random-card').innerHTML = `${cardImage}`
+  let rand = Math.floor(Math.random() * data.length);
+  let card = data[rand];
+  var cardImage = (card.hasOwnProperty('image_url')) ? `<img src=${card['image_url']} alt="">` : `<img src=https://netrunnerdb.com/find/?q=${card['title'].split(' ').join('+').toLowerCase()}>`;
+  document.getElementById('random-card').innerHTML = `${cardImage}`;
 }
 
 function createFactionDeck(side, faction) {
-  return filterByFaction(faction).concat(filterByNeutral(side))
+  return filterByFaction(faction).concat(filterByNeutral(side));
 }
 
 function chooseIdentity(side, faction) {
-  let identities = filterByIdentity()
-  let chooseSide = side
-  let chooseFaction = faction
+  let identities = filterByIdentity();
+  let chooseSide = side;
+  let chooseFaction = faction;
   const index = Math.floor(Math.random() * identities.length);
-  let ident = identities[index]
+  let ident = identities[index];
 
   if (faction === undefined) {
     if (ident['side_code'] == side) {
@@ -78,7 +78,7 @@ function chooseIdentity(side, faction) {
   if (ident['faction_code'] == faction) {
     return ident
   } 
-  return chooseIdentity(chooseSide, chooseFaction)
+  return chooseIdentity(chooseSide, chooseFaction);
 }
 
 function groupBy(objectArray, property) {
@@ -93,29 +93,29 @@ function groupBy(objectArray, property) {
 }
 
 function countAgendaPoints(deck) {
-  let totalPoints = 0
+  let totalPoints = 0;
   deck.forEach(function(item) {
     if (item["type_code"] == "agenda") {
-      totalPoints = totalPoints + item["agenda_points"]
+      totalPoints = totalPoints + item["agenda_points"];
     }
   })
-  console.log(deck)
-    return totalPoints
+  // console.log(deck)
+    return totalPoints;
 }
 
 function putAllCardsInDeck(deck) { // pass in createFactionDeck(side, faction) 
-  var factionPool = []
+  let factionPool = [];
     deck.filter(function(el) {
       for (var i = 1; i <= el["quantity"]; i++) {
-        factionPool.push(el)
+        factionPool.push(el);
       } 
     })
-  return factionPool
+  return factionPool;
 }
 
 function displayCorpDeck(deck) { 
-  let titleDeck = groupBy(deck, 'title')
-  let titles = Object.keys(titleDeck)
+  let titleDeck = groupBy(deck, 'title');
+  let titles = Object.keys(titleDeck);
   
   titles.forEach(function(item) {
     var content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
@@ -128,90 +128,90 @@ function displayCorpDeck(deck) {
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
     (titleDeck[item][0]['type_code'] == 'agenda') ? 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]} </a> <span class='subtext'>(${titleDeck[item][0]["advancement_cost"]} / ${titleDeck[item][0]["agenda_points"]})</span>` : 
-    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`
+    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`;
     // cost/points/strength
-    var classes = content.classList;
+    let classes = content.classList;
     classes.remove('hide');
-    if(titleDeck[item][0]['faction_code'] == 'neutral-corp') {
-      content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`
+    if (titleDeck[item][0]['faction_code'] == 'neutral-corp') {
+      content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`;
     } else {
-      content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+      content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`;
     }
   })
 
   if (document.getElementById('agenda-content').children.length > 1) {
-    document.getElementById('agenda-content').children[0].innerText = 'Agendas'
+    document.getElementById('agenda-content').children[0].innerText = 'Agendas';
   }
   
   if (document.getElementById('asset-content').children.length > 1) {
-    document.getElementById('asset-content').children[0].innerText = 'Assets'
+    document.getElementById('asset-content').children[0].innerText = 'Assets';
   }
 
   if (document.getElementById('operation-content').children.length > 1) {
-    document.getElementById('operation-content').children[0].innerText = 'Operations'
+    document.getElementById('operation-content').children[0].innerText = 'Operations';
   }
   
   if (document.getElementById('upgrade-content').children.length > 1) {
-    document.getElementById('upgrade-content').children[0].innerText = 'Upgrades'
+    document.getElementById('upgrade-content').children[0].innerText = 'Upgrades';
   }
-  document.querySelector('#random-card').classList.add('hide')
-  document.querySelector('#corp-identity-chooser').classList.add('hide')
-  document.querySelector('#runner-identity-chooser').classList.add('hide')
-  document.querySelector('#choose-identity-container').classList.add('hide')
+  document.querySelector('#random-card').classList.add('hide');
+  document.querySelector('#corp-identity-chooser').classList.add('hide');
+  document.querySelector('#runner-identity-chooser').classList.add('hide');
+  document.querySelector('#choose-identity-container').classList.add('hide');
 
-  let showDeck = groupBy(deck, 'type_code')
-  return showDeck
+  let showDeck = groupBy(deck, 'type_code');
+  return showDeck;
 } 
 
 
 function displayDeck(deck) { 
-  let titleDeck = groupBy(deck, 'title')
-  let titles = Object.keys(titleDeck)
+  let titleDeck = groupBy(deck, 'title');
+  let titles = Object.keys(titleDeck);
   titles.forEach(function(item) {
 
-    let content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
-    let contentText = document.getElementById(`${titleDeck[item][0]["type_code"]}`)
+    let content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`);
+    let contentText = document.getElementById(`${titleDeck[item][0]["type_code"]}`);
 
-    var card = (titleDeck[item][0]['type_code'] == 'identity') && (titleDeck[item][0].hasOwnProperty('image_url')) ? 
+    let card = (titleDeck[item][0]['type_code'] == 'identity') && (titleDeck[item][0].hasOwnProperty('image_url')) ? 
     `<img src=${titleDeck[item][0]['image_url']} alt="">` : 
     (titleDeck[item][0]['type_code'] == 'identity') ? 
     `<img src="https://netrunnerdb.com/card_image/${titleDeck[item][0]['code']}.png" alt="">` : 
     (titleDeck[item][0].hasOwnProperty('keywords')) && (titleDeck[item][0]['keywords'].includes('Icebreaker')) ? 
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'> (${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
     `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`
-    var classes = content.classList;
+    let classes = content.classList;
     classes.remove('hide');
       if (titleDeck[item][0]['faction_code'] == 'neutral-runner') {
-        content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`
+        content.innerHTML = content.innerHTML + `<li class='card neutral'>${card}</li>`;
       } else {
-        content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`
+        content.innerHTML = content.innerHTML + `<li class='card'>${card}</li>`;
       }
   })
 
     if (document.getElementById('event-content').children.length > 1) {
-      document.getElementById('event-content').children[0].innerText = 'Events'
+      document.getElementById('event-content').children[0].innerText = 'Events';
     }
 
     if (document.getElementById('program-content').children.length > 1) {
-      document.getElementById('program-content').children[0].innerText = 'Programs'
+      document.getElementById('program-content').children[0].innerText = 'Programs';
     }
 
     if (document.getElementById('resource-content').children.length > 1) {
-      document.getElementById('resource-content').children[0].innerText = 'Resources'
+      document.getElementById('resource-content').children[0].innerText = 'Resources';
     }
-  document.querySelector('#random-card').classList.add('hide')
-  document.querySelector('#corp-identity-chooser').classList.add('hide')
-  document.querySelector('#runner-identity-chooser').classList.add('hide')
-  document.querySelector('#choose-identity-container').classList.add('hide')
-  let showDeck = groupBy(deck, 'type_code')
-  return showDeck
+  document.querySelector('#random-card').classList.add('hide');
+  document.querySelector('#corp-identity-chooser').classList.add('hide');
+  document.querySelector('#runner-identity-chooser').classList.add('hide');
+  document.querySelector('#choose-identity-container').classList.add('hide');
+  let showDeck = groupBy(deck, 'type_code');
+  return showDeck;
 } 
 
 window.onload=function(){
   document.querySelector(".button-wrapper").addEventListener("click", function(event){
-    event.target.classList.add('clicked')
-    const runner = document.querySelector('.runner-button-wrapper')
-    const nodeList = Array.from(document.querySelectorAll('.submit'))
+    event.target.classList.add('clicked');
+    const runner = document.querySelector('.runner-button-wrapper');
+    const nodeList = Array.from(document.querySelectorAll('.submit'));
     for (let i = 0; i < nodeList.length; i++) {
       if (nodeList[i].classList.contains('clicked')) {
       } else {
