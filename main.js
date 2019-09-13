@@ -118,20 +118,12 @@ function displayCorpDeck(deck) {
   let titles = Object.keys(titleDeck);
   
   titles.forEach(function(item) {
-    var content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
-    debugger
-    var card = (titleDeck[item][0]['type_code'] === 'identity') && 
-    (titleDeck[item][0].hasOwnProperty('image_url')) ? 
-    `<img src=${titleDeck[item][0]['image_url']} alt="">` : 
-    (titleDeck[item][0]['type_code'] === 'identity') ? 
-    `<img src="https://netrunnerdb.com/card_image/${titleDeck[item][0]['code']}.png" alt="">` : 
-    (titleDeck[item][0]['type_code'] === 'ice') ? 
-    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` :
-    (titleDeck[item][0]['type_code'] === 'agenda') ? 
-    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]} </a> <span class='subtext'>(${titleDeck[item][0]["advancement_cost"]} / ${titleDeck[item][0]["agenda_points"]})</span>` : 
-    `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`;
+    console.log(`${titleDeck[item][0]["type_code"]}-content`, item);
+    let content = document.getElementById(`${titleDeck[item][0]["type_code"]}-content`)
+    // debugger
+    var card = (titleDeck[item][0]['type_code'] === 'identity') && (titleDeck[item][0].hasOwnProperty('image_url')) ? `<img src=${titleDeck[item][0]['image_url']} alt="">` : (titleDeck[item][0]['type_code'] === 'identity') ? `<img src="https://netrunnerdb.com/card_image/${titleDeck[item][0]['code']}.png" alt="">` : (titleDeck[item][0]['type_code'] === 'ice') ? `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a> <span class='subtext'>(${titleDeck[item][0]["keywords"]}) (${titleDeck[item][0]["cost"]} / ${titleDeck[item][0]["strength"]})</span>` : (titleDeck[item][0]['type_code'] === 'agenda') ? `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]} </a> <span class='subtext'>(${titleDeck[item][0]["advancement_cost"]} / ${titleDeck[item][0]["agenda_points"]})</span>` : `${titleDeck[item].length}x <a href=https://netrunnerdb.com/find/?q=${item.split(' ').join('+').toLowerCase()} target='_blank'> ${titleDeck[item][0]["title"]}</a>`;
     // cost/points/strength
-    console.log(`card`, card)
+    // console.log(`card`, card)
     let classes = content.classList;
     classes.remove('hide');
     if (titleDeck[item][0]['faction_code'] == 'neutral-corp') {

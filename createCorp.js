@@ -19,7 +19,6 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   playerHand.push(currentIdentity);
   playerHand.push(chooseAgendas(deck));
   playerHand.push(chooseIce(deck));
-  debugger
   playerHand.push(chooseAssets(deck));
   playerHand.push(chooseUpgrades(deck));
   playerHand = playerHand.flat();
