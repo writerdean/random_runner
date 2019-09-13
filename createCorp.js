@@ -1,7 +1,6 @@
 
 function buildCorpDeck(deck) { // pass in (faction)Pool
   if (deck === undefined) { 
-    // console.log(`no faction chosen`) 
     let rand = Math.floor(Math.random() * randCorpFaction.length);
     deck = randCorpFaction[rand];
   }
@@ -11,12 +10,12 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   }
   let currentFaction = deck[0]['faction_code'];
   let playerHand = [];
-  
-  if (currentIdentity === null) {
+
+  if (currentIdentity == null) {
     currentIdentity = chooseIdentity('corp', currentFaction);
   }
   let min = currentIdentity.minimum_deck_size;
-  // console.log(`THIS IS THE MINIMUM DECK SIZE AS PER IDENTITY: ${min}`)
+
   playerHand.push(currentIdentity);
   playerHand.push(chooseAgendas(deck).array);
   playerHand.push(chooseIce(deck));
