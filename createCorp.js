@@ -1,16 +1,17 @@
 
 function buildCorpDeck(deck) { // pass in (faction)Pool
+  // console.log(`current identity`, currentIdentity)
   if (deck === undefined) { 
     let rand = Math.floor(Math.random() * randCorpFaction.length);
     deck = randCorpFaction[rand];
   }
-  let content = document.querySelectorAll('.card');
+  const content = document.querySelectorAll('.card');
   for (let i = 0; i < content.length; i++) {
     content[i].innerHTML = "";
   }
   let currentFaction = deck[0]['faction_code'];
   let playerHand = [];
-  
+
   if (currentIdentity === null) {
     currentIdentity = chooseIdentity('corp', currentFaction);
   }
@@ -131,7 +132,6 @@ function chooseAssets(deck) {
     array: [playerHandAssets]
   };
   return assetsPlus;
-  // return playerHandAssets.flat()
 }
 
 function chooseUpgrades(deck) {
@@ -156,7 +156,6 @@ function chooseUpgrades(deck) {
     array: [playerHandUpgrades]
   };
   return upgradesPlus;
-  // return playerHandUpgrades.flat()
 }
 
 function chooseOperations(deck, length, min) {
@@ -183,5 +182,4 @@ function chooseOperations(deck, length, min) {
     array: [playerHandOperations]
   };
   return operationsPlus;
-  // return playerHandOperations.flat();
 }
