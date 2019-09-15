@@ -1,7 +1,6 @@
 
 function buildRunnerDeck(deck) { // pass in (faction)Pool
   if (deck === undefined) { 
-    console.log(`no faction chosen`) 
     let rand = Math.floor(Math.random() * randRunFaction.length);
     deck = randRunFaction[rand];
   }
