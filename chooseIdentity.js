@@ -1,7 +1,7 @@
 
 let runnersIdentities = cards
   .filter(function(el) {
-  return (el["type_code"] == "identity" && el["side_code"] == "runner") 
+  return (el["type_code"] == "identity" && el["side_code"] == "runner");
 })
 .sort(function(a, b) {
   return a.title < b.title ? -1 : 1;
@@ -13,7 +13,7 @@ let runnersIdentities = cards
 
 let corpIdentities = cards
   .filter(function(el) {
-  return (el["type_code"] == "identity" && el["side_code"] == "corp") 
+  return (el["type_code"] == "identity" && el["side_code"] == "corp");
 })
 .sort(function(a, b) {
   return a.title < b.title ? -1 : 1;
@@ -22,7 +22,7 @@ let corpIdentities = cards
   return a.faction_code < b.faction_code ? -1 : 1;
 });
 
-let allIdentities = [...runnersIdentities, ...corpIdentities]
+let allIdentities = [...runnersIdentities, ...corpIdentities];
 
 function chooseFromRunnerIdentityList() {
   for (let i = 0; i < runnersIdentities.length; i++) {
@@ -36,24 +36,22 @@ function chooseFromRunnerIdentityList() {
 }
 
 function chooseFromCorpIdentityList() {
-  console.log(`choose from corp identities called`)
   for (let i = 0; i < corpIdentities.length; i++) {
     let option = document.createElement('option');
     let node = document.createTextNode(corpIdentities[i]['title']);
     option.appendChild(node);
-    let element = document.getElementById('corp-identity-dropdown');
+    let element = document.getElementById('identities');
     element.appendChild(option);
-    // console.log(node)
   }
-  document.getElementById('corp-identity-dropdown').addEventListener('change', changePerson);
+  document.getElementById('identities').addEventListener('change', changePerson);
   }
 function changePerson(event) {
   let currentChoice = document.getElementById('identities').value;
   currentIdentity = allIdentities.filter(function(el) {
-        if (el["title"] == currentChoice) {
-          return true
-        }
-    })[0]
+    if (el["title"] == currentChoice) {
+      return true;
+    }
+})[0]
   document.getElementById('identities').selectedIndex = null;
     return currentIdentity
   }
