@@ -5,29 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-  <!-- <meta name="google-signin-client_id" content="243909071235-g94ojcot14hfk9d3g4cnuk18jij0pij0.apps.googleusercontent.com"> -->
   <script src="cards.js"></script>
   <script src="filters.js"></script>
+  <script src="chooseIdentity.js"></script>
   <script src="createCorp.js"></script>
   <script src="createRunner.js"></script>
   <script src="main.js"></script>
-  <script src="chooseIdentity.js"></script>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
   <title>Random Runner</title>
 </head>
 <body>
-    <!-- <div> <button class="g-signin2" id="my-signin2" onclick="onSignIn()">Sign In</button></div> -->
     <div> <button class="home" onClick="window.location.reload()">Start Over</button></div>
-
-    <!-- <a href="#" onclick="signOut();">Sign out</a> -->
-    <!-- <button>Random</button> -->
 
     <button id='corp-identity-chooser' onclick='chooseFromCorpIdentityList()'>CORP</button>
     <button id='runner-identity-chooser' onClick='chooseFromRunnerIdentityList()'>RUNNER</button>
-
-  <!-- We will put our React component inside this div. -->
-    <div id='like_button_container'></div>
 
     <div id="random-card"></div>
 
@@ -48,14 +40,12 @@
         </div>
   </div>
 
-
 <div class='main-wrapper'>
 
   <div class='button-wrapper'>
     <div class='right'>
       <div class='runner-button-wrapper'>
         <button class='submit' id='runner' onclick='displayDeck(buildRunnerDeck())'>RUNNER</button>
-        <!-- <button class='submit' onclick='chooseRunnerIdentity()'>Choose Identity</button> -->
         <button class='submit' id='anarch' onclick='displayDeck(buildRunnerDeck(anarchPool))'>Anarch</button>
         <button class='submit' id='criminal' onclick='displayDeck(buildRunnerDeck(criminalPool))'>Criminal</button>
         <button class='submit' id='shaper' onclick='displayDeck(buildRunnerDeck(shaperPool))'>Shaper</button>
@@ -64,7 +54,6 @@
     <div class='left'>
       <div class='corp-button-wrapper'>
         <button class='submit' id='corp' onclick='displayCorpDeck(buildCorpDeck())'>CORP</button>
-        <!-- <button class='submit' onclick='chooseCorpIdentity()'>Choose Identity</button> -->
         <button class='submit' id='hb' onclick='displayCorpDeck(buildCorpDeck(hbPool))'>Haas-Bioroid</button>
         <button class='submit' id='jinteki' onclick='displayCorpDeck(buildCorpDeck(jintekiPool))'>Jinteki</button>
         <button class='submit' id='nbn' onclick='displayCorpDeck(buildCorpDeck(nbnPool))'>NBN</button>
@@ -72,8 +61,6 @@
       </div>
     </div>
   </div>
-  
-  
 
   <div class='display-identities'>
     <ul id='display-runner-identities'></ul>
@@ -94,16 +81,10 @@
     <ul class='content runner hide' id='resource-content'><p class='heading'>Resource</p></ul>
     <ul class='content corp hide' id='upgrade-content'><p class='heading'>Upgrade</p></ul>
   </div>
-
-  
-
 </div>
-
-
 
   <script>
     window.onload = getRandomCard;
   </script>
-  
 </body>
 </html>

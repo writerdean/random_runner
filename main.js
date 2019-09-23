@@ -42,10 +42,12 @@ const jintekiPool = putAllCardsInDeck(createFactionDeck('corp', 'jinteki'));
 const hbPool = putAllCardsInDeck(createFactionDeck('corp', 'haas-bioroid'));
 const nbnPool = putAllCardsInDeck(createFactionDeck('corp', 'nbn'));
 const weylandPool = putAllCardsInDeck(createFactionDeck('corp', 'weyland-consortium'));
+const randCorpFaction = [jintekiPool, hbPool, nbnPool, weylandPool];
 
 const anarchPool = putAllCardsInDeck(createFactionDeck('runner', 'anarch'));
 const criminalPool = putAllCardsInDeck(createFactionDeck('runner', 'criminal'));
 const shaperPool = putAllCardsInDeck(createFactionDeck('runner', 'shaper'));
+const randRunFaction = [anarchPool, criminalPool, shaperPool];
 
 function getRandomCard() {
   const rand = Math.floor(Math.random() * data.length);

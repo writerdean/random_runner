@@ -1,7 +1,5 @@
-
 function buildCorpDeck(deck) { // pass in (faction)Pool
-  // console.log(`current identity`, currentIdentity)
-  if (deck === undefined) { 
+  if (deck === undefined) {
     let rand = Math.floor(Math.random() * randCorpFaction.length);
     deck = randCorpFaction[rand];
   }
@@ -11,11 +9,9 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   }
   let currentFaction = deck[0]['faction_code'];
   let playerHand = [];
-
-  if (currentIdentity === null) {
+  if (currentIdentity == null) {
     currentIdentity = chooseIdentity('corp', currentFaction);
   }
-  console.log(`currentIdentity`, currentIdentity)
   let min = currentIdentity.minimum_deck_size;
 
   playerHand.push(currentIdentity);
@@ -141,10 +137,10 @@ function chooseUpgrades(deck) {
     return el['type_code'] == 'upgrade';
   })
   for (var i = 0; i <= 6; i ++) {
-    while(true){
-      var index = [Math.floor(Math.random() * upgrades.length)]
+    while (true) {
+      let index = [Math.floor(Math.random() * upgrades.length)]
       let testCard = upgrades[index];
-      if(playerHandUpgrades.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
+      if (playerHandUpgrades.filter(x => x.title == testCard.title).length < testCard.deck_limit) {
         playerHandUpgrades.push(upgrades.splice(index, 1));
         playerHandUpgrades = playerHandUpgrades.flat();
         break;

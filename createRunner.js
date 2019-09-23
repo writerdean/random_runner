@@ -10,7 +10,6 @@ function buildRunnerDeck(deck) { // pass in (faction)Pool
   }
   let currentFaction = deck[0]['faction_code'];
   let playerHand = [];
-  
   if (currentIdentity == null) {
     currentIdentity = chooseIdentity('runner', currentFaction);
   }
