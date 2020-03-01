@@ -12,7 +12,7 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   if (currentIdentity == null) {
     currentIdentity = chooseIdentity('corp', currentFaction);
   }
-  let min = currentIdentity.minimum_deck_size;
+  const min = currentIdentity.minimum_deck_size;
 
   playerHand.push(currentIdentity);
   playerHand.push(chooseAgendas(deck));
@@ -20,6 +20,8 @@ function buildCorpDeck(deck) { // pass in (faction)Pool
   playerHand.push(chooseAssets(deck));
   playerHand.push(chooseUpgrades(deck));
   playerHand = playerHand.flat();
+  playerHand.length = playerHand[1].length + playerHand[2].length + playerHand[3].length + playerHand[4].length;
+  console.log(playerHand.length)
   playerHand.push(chooseOperations(deck, playerHand.length, min));
   playerHand =  playerHand.flat();
 
@@ -156,6 +158,8 @@ function chooseUpgrades(deck) {
 }
 
 function chooseOperations(deck, length, min) {
+  console.log(`length`, length);
+  console.log(`deck`, deck);
   let playerHandOperations = [];
   let operations = deck.filter(function(el) {
     return el['type_code'] == 'operation';

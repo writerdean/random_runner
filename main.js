@@ -1,4 +1,4 @@
-let data = eachCard.data;
+const data = eachCard.data;
 let currentIdentity;
 let currentFaction;
 
@@ -24,7 +24,7 @@ function ownedPacks(item) {
   || item["pack_code"] === "ftm" 
   || item["pack_code"] === "23s" 
   || item["pack_code"] === "baw" 
-  || item["pack_code"] === "baw" 
+  || item["pack_code"] === "fm" 
   || item["pack_code"] === "td" 
   || item["pack_code"] === "asis" 
   || item["pack_code"] === "core2" 

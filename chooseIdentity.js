@@ -1,7 +1,7 @@
 
-let runnersIdentities = cards
+const runnersIdentities = cards
   .filter(function(el) {
-  return (el["type_code"] == "identity" && el["side_code"] == "runner");
+  return (el["type_code"] === "identity" && el["side_code"] === "runner");
 })
 .sort(function(a, b) {
   return a.title < b.title ? -1 : 1;
@@ -11,9 +11,9 @@ let runnersIdentities = cards
 });
 
 
-let corpIdentities = cards
+const corpIdentities = cards
   .filter(function(el) {
-  return (el["type_code"] == "identity" && el["side_code"] == "corp");
+  return (el["type_code"] === "identity" && el["side_code"] === "corp");
 })
 .sort(function(a, b) {
   return a.title < b.title ? -1 : 1;
@@ -22,7 +22,7 @@ let corpIdentities = cards
   return a.faction_code < b.faction_code ? -1 : 1;
 });
 
-let allIdentities = [...runnersIdentities, ...corpIdentities];
+const allIdentities = [...runnersIdentities, ...corpIdentities];
 
 function chooseFromRunnerIdentityList() {
   for (let i = 0; i < runnersIdentities.length; i++) {
@@ -44,14 +44,15 @@ function chooseFromCorpIdentityList() {
     element.appendChild(option);
   }
   document.getElementById('identities').addEventListener('change', changePerson);
-  }
+}
+
 function changePerson(event) {
   let currentChoice = document.getElementById('identities').value;
   currentIdentity = allIdentities.filter(function(el) {
-    if (el["title"] == currentChoice) {
+    if (el["title"] === currentChoice) {
       return true;
     }
 })[0]
   document.getElementById('identities').selectedIndex = null;
-    return currentIdentity
-  }
+  return currentIdentity;
+}
